@@ -1,0 +1,24 @@
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="sidenav" [opened]="true" mode="side">
+    <div class="logo-div">
+      <img class="logo" src="assets/img/logo.svg" alt="">
+      <h1>halloooo</h1>
+    </div> 
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <mat-toolbar class="toolbar" color="primary">
+      <mat-toolbar-row>
+        <button type="button" mat-button (click)="drawer.toggle()" mat-icon-button class="menu-btn">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Slack</span> 
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div class="router-div">
+      <router-outlet></router-outlet>
+    </div> 
+  </div>
+</mat-drawer-container>
