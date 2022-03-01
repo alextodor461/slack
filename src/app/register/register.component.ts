@@ -1,17 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from 'app/shared/auth.service';
 
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
-  
   email : string = '';
   password : string = '';
 
@@ -20,7 +17,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login() {
+  register() {
 
     if(this.email == '') {
       alert('Please enter email');
@@ -32,13 +29,11 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.auth.login(this.email,this.password);
+    this.auth.register(this.email,this.password);
     
     this.email = '';
     this.password = '';
 
   }
 
-
- 
 }

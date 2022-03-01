@@ -1,1 +1,41 @@
-<ngx-auth-firebaseui appearance="outline"></ngx-auth-firebaseui>
+<mat-drawer-container class="login-background" autosize>
+    <mat-toolbar class="toolbar" color="primary">
+        <mat-toolbar-row>
+            <span>Slack</span>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div class="form-container">
+        <form class="login-field">
+            <mat-toolbar class="toolbar-login" color="primary">
+                <h4>Login</h4>
+            </mat-toolbar>
+            <div class="input-fields">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" [(ngModel)]="email">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" [(ngModel)]="password">
+                </div>
+
+                <div class="login-button-field">
+                    <button mat-raised-button color="primary" (click)="login()">Login</button>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="/register" style="text-decoration: none;">Need Account ? <span
+                                    class="text-danger">Register</span></a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="/forgot-password" class="text-dark" style="text-decoration: none;"> Forgot
+                                Password ? </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</mat-drawer-container>
