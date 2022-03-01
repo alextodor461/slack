@@ -11,10 +11,10 @@ const routes: Routes = [
   {path: '', redirectTo:'login', pathMatch:'full'},
   {path: 'login', component : LoginComponent},
   {path: 'navbar', component: NavbarComponent},
+  {path: 'user/:id', component: NavbarComponent},
   {path: 'register', component : RegisterComponent},
   {path: 'varify-email', component : VarifyEmailComponent},
   {path: 'forgot-password', component : ForgotPasswordComponent}
-  
 
 ];
 

@@ -10,16 +10,19 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './login/login.component';
+import { MatTreeModule } from '@angular/material/tree';
 import { MatButtonModule } from '@angular/material/button';
+import { AddChannelComponent } from './add-channel/add-channel.component';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { MatMenuModule } from '@angular/material/menu';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { RegisterComponent } from './register/register.component';
 import { VarifyEmailComponent } from './varify-email/varify-email.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'environments/environment';
-import { FormsModule } from '@angular/forms';
-
 
 @NgModule({
   declarations: [
@@ -29,8 +32,8 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     ForgotPasswordComponent,
     VarifyEmailComponent,
+    AddChannelComponent
   ],
-
 
   imports: [
     //NgxAuthFirebaseUIModule.forRoot({
@@ -50,12 +53,13 @@ import { FormsModule } from '@angular/forms';
     
     AngularFireModule.initializeApp(environment.config),
     FlexLayoutModule,
+    MatTreeModule,
     MatButtonModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule
-    
-
+    FormsModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
