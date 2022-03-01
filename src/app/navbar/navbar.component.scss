@@ -9,10 +9,60 @@
         background: none;
         border: none;
         cursor: pointer;
-        filter: invert(1);
     }
 }
 
 .sidenav{
     width: 300px !important;
+}
+
+.channels-btn{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.channel-tree{
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+
+    &:hover{
+        background-color: rgb(78, 78, 78);
+    }
+}
+
+.tree{
+    cursor: pointer;
+
+    &:hover{
+        background-color: rgb(78, 78, 78);
+    }
+}
+
+.add-channel-btn{
+    margin-left: 9em;
+}
+
+.channel-div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 60px;
+    padding-block: 10px;
+
+    &:hover{
+        background-color: grey !important;
+    }
+
+    &:hover .more-btn{
+        visibility: visible !important; 
+    }
+
+    .more-btn{
+        margin-right: 40px;
+        visibility: hidden;
+        line-height: 0;
+    }
 }

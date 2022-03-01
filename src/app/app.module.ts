@@ -10,15 +10,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { LoginComponent } from './login/login.component';
-
+import { MatTreeModule } from '@angular/material/tree';
+import { MatButtonModule } from '@angular/material/button';
+import { AddChannelComponent } from './add-channel/add-channel.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     LoginComponent,
+    AddChannelComponent,
   ],
-
 
   imports: [
     NgxAuthFirebaseUIModule.forRoot({
@@ -37,7 +44,13 @@ import { LoginComponent } from './login/login.component';
     BrowserAnimationsModule,
     NgxAuthFirebaseUIModule,
     FlexLayoutModule,
-
+    MatTreeModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

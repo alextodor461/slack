@@ -6,7 +6,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: '', component: NavbarComponent},
-
+  {path: 'user/:id', component: NavbarComponent},
 ];
 
 @NgModule({
