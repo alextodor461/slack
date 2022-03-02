@@ -25,6 +25,7 @@
     "@angular/router": "~13.1.0",
     "angular-particle": "^1.0.4",
     "firebase": "^9.6.7",
+    "ng-particle": "^1.0.10",
     "ngx-auth-firebaseui": "^6.0.0",
     "rxfire": "^6.0.0",
     "rxjs": "~7.4.0",

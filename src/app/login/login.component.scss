@@ -14,8 +14,8 @@
 
     a{
         color: white;
-        margin-left: 7.5px;
-        margin-right: 7.5px;
+        margin-left: 25px;
+        margin-right: 25px;
 
         &:hover{
             text-decoration: underline !important;
@@ -29,8 +29,8 @@
     justify-content: space-between;
     align-items: center;
     background-color: gray;
-    width: 500px;
-    height: 300px;
+    width: 35%;
+    height: 35vh;
     border-radius: 15px;
     position: relative;
     overflow: hidden;
@@ -51,7 +51,7 @@
 .toolbar-login{
     display: flex;
     justify-content: center;
-    background-color: #fa9e12;
+    background-color: #363636;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
@@ -63,12 +63,14 @@
     justify-content: center;
     align-items: center;
     outline: none;
+    width: 70%;
 
     .mb-3{
-        margin-top: 5px;
-        margin-bottom: 5px;
+        margin-top: 15px;
+        margin-bottom: 15px;
         display: flex;
         flex-direction: column;
+        width: 100%;
 
         input{
             background: none;
