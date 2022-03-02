@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'app/shared/auth.service';
 
+var particlesJS: any;
 
 @Component({
   selector: 'app-login',
@@ -11,13 +12,13 @@ import { AuthService } from 'app/shared/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  
   email : string = '';
   password : string = '';
 
   constructor(private auth : AuthService) { }
 
   ngOnInit(): void {
+    
   }
 
   login() {
@@ -38,7 +39,4 @@ export class LoginComponent implements OnInit {
     this.password = '';
 
   }
-
-
- 
 }

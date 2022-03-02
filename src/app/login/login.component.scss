@@ -1,20 +1,57 @@
 .login-background{
     height: 100vh;
+    background-color: rgb(39, 39, 39);
+}
+
+.toolbar{
+    background-color: #fa9e12;
+}
+
+.row{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+
+    a{
+        color: white;
+        margin-left: 7.5px;
+        margin-right: 7.5px;
+
+        &:hover{
+            text-decoration: underline !important;
+        }
+    }
 }
 
 .login-field{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     background-color: gray;
     width: 500px;
     height: 300px;
     border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    background-color: #363636;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
 }
 
 .login-button{
-    background-color: #7b1fa2;
+    background-color: #fa9e12;
+    width: 100%;
+    border-radius: 0;
+
+    &:hover{
+        background-color: #ff8800;
+    }
 }
 
 .toolbar-login{
-    background-color: #7b1fa2;
+    display: flex;
+    justify-content: center;
+    background-color: #fa9e12;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
@@ -25,6 +62,22 @@
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
+    outline: none;
+
+    .mb-3{
+        margin-top: 5px;
+        margin-bottom: 5px;
+        display: flex;
+        flex-direction: column;
+
+        input{
+            background: none;
+            border: none;
+            border-bottom: 1px solid white;
+            outline-style: none;
+            color: white;
+        }
+    }
 }
 
 .login-button-field{
