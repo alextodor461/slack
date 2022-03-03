@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   constructor(private auth : AuthService) { }
 
   ngOnInit(): void {
+    
     this.myStyle = {
       'position': 'fixed',
       'width': '100%',

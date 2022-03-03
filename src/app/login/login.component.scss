@@ -5,9 +5,10 @@
 
 .toolbar{
     background-color: #fa9e12;
+    height: 5vh;
 }
 
-.row{
+.a-tags{
     margin-top: 10px;
     display: flex;
     justify-content: center;
@@ -28,20 +29,22 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: gray;
     width: 35%;
     height: 35vh;
     border-radius: 15px;
     position: relative;
     overflow: hidden;
-    background-color: #363636;
+    background-color: #282828b0;
     box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+   
 }
 
 .login-button{
     background-color: #fa9e12;
     width: 100%;
     border-radius: 0;
+    height: 50px;
+    font-size: 20px;
 
     &:hover{
         background-color: #ff8800;
@@ -51,7 +54,7 @@
 .toolbar-login{
     display: flex;
     justify-content: center;
-    background-color: #363636;
+    background-color: #282828b0;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
@@ -94,4 +97,99 @@
 .mat-form-field-suffix{
     display: flex !important;
     align-items: center !important;
+}
+
+/* BACKGROUND ANIMATION */
+
+section{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 100%;
+    height: 95vh;
+    background-color: rgb(20, 20, 20);
+
+    .row{
+        position: relative;
+        width: 100%;
+        display: flex;
+        padding: 10px 0px;
+        white-space: nowrap;
+        transform: rotate(-30deg);
+        top: -50%;
+        
+        div{
+            animation: animate1 60s linear infinite;
+            animation-delay: -60s;
+        }
+    }
+
+    mat-icon{
+        color: rgba(0,0,0,0.4);
+        font-size: 64px;
+        width: 64px;
+        transition: 1s;
+        user-select: none;
+        padding: 5px 0px;
+        cursor: default;
+
+        &:hover{
+            transition: 0s;
+            color: #fa9e12;
+            text-shadow: 0 0 120px #fa9e12;
+        }
+    }
+}
+
+section .row div:nth-child(2){
+    animation: animate2 60s linear infinite;
+    animation-delay: -30s;
+}
+
+@keyframes animate1{
+    0%{
+        transform: translateX(100%);
+    }100%{
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes animate2{
+    0%{
+        transform: translateX(0%);
+    }100%{
+        transform: translateX(-200%);
+    }
+}
+
+
+
+section .row:nth-child(even) div{
+    animation: animate3 60s linear infinite;
+    animation-delay: -60s;
+}
+
+section .row:nth-child(even) div:nth-child(2){
+    animation: animate4 60s linear infinite;
+    animation-delay: -30s;
+}
+
+@keyframes animate3{
+    0%{
+        transform: translateX(-100%);
+    }100%{
+        transform: translateX(100%);
+    }
+}
+
+@keyframes animate4{
+    0%{
+        transform: translateX(-200%);
+    }100%{
+        transform: translateX(0);
+    }
 }
