@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { ActivatedRoute } from '@angular/router';
 import { AddChannelComponent } from 'app/add-channel/add-channel.component';
+import { EditChannelComponent } from 'app/edit-channel/edit-channel.component';
 import { Channel } from 'models/channels.class';
 
 /**
@@ -42,10 +43,9 @@ interface ExampleFlatNode {
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-    navbar =  NavbarComponent;
    channel: Channel = new Channel();
    allChannels: any = [];
-   channelId: any = '';
+   channelId: any;
 
    deleteChannel(channelId: number){
       this.allChannels.splice(channelId, 1);
@@ -60,13 +60,23 @@ export class NavbarComponent implements OnInit {
     this.firestore.collection('channels').valueChanges({idField: 'customIdName'}).subscribe((changes: any) =>{
       this.allChannels = changes;
       console.log(changes);
-      
+      this.getChannel();
     })
-    this.save();
+  }
+
+  getChannel(){
+    this.firestore.collection('channels').doc(this.channelId).valueChanges().subscribe((channel: any) =>{
+      this.channel = new Channel(channel);
+    })
   }
 
   openDialog(): void {
     this.dialog.open(AddChannelComponent)
+  }
+
+  openDialogEditChannel(): void {
+    var dialog = this.dialog.open(EditChannelComponent);
+    dialog.componentInstance.channel = this.channel;
   }
 
   private _transformer = (node: FoodNode, level: number) => {

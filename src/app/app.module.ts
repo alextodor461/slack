@@ -22,6 +22,7 @@ import { RegisterComponent } from './register/register.component';
 import { VarifyEmailComponent } from './varify-email/varify-email.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'environments/environment';
+import { EditChannelComponent } from './edit-channel/edit-channel.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { environment } from 'environments/environment';
     NavbarComponent,
     ForgotPasswordComponent,
     VarifyEmailComponent,
-    AddChannelComponent
+    AddChannelComponent,
+    EditChannelComponent
   ],
 
   imports: [
