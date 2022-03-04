@@ -42,15 +42,27 @@ interface ExampleFlatNode {
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+    navbar =  NavbarComponent;
    channel: Channel = new Channel();
    allChannels: any = [];
    channelId: any = '';
+
+   deleteChannel(channelId: number){
+      this.allChannels.splice(channelId, 1);
+      this.save();
+   }
+
+   save(){
+    this.firestore.collection('channels').doc(this.channelId).update(this.channel.toJSON());
+  }
 
   ngOnInit(): void {
     this.firestore.collection('channels').valueChanges({idField: 'customIdName'}).subscribe((changes: any) =>{
       this.allChannels = changes;
       console.log(changes);
+      
     })
+    this.save();
   }
 
   openDialog(): void {

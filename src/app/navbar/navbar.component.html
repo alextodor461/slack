@@ -4,12 +4,12 @@
 
     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="tree">
       <mat-tree-node class="channel-tree" *matTreeNodeDef="let node" matTreeNodeToggle>
-        <div class="channel-div" *ngFor="let channel of allChannels">
+        <div class="channel-div" *ngFor="let channel of allChannels, let i = index">
           #
           {{ channel.channelName }}
           <button class="more-btn" mat-button [matMenuTriggerFor]="menu"><mat-icon>more_horiz</mat-icon></button>
             <mat-menu #menu="matMenu">
-            <button mat-menu-item>Delete</button>
+            <button mat-menu-item (click)="deleteChannel(i)">Delete</button>
             <button mat-menu-item>Rename</button>
           </mat-menu>
         </div>

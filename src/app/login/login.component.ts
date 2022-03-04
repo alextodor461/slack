@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     
+    
     this.myStyle = {
       'position': 'fixed',
       'width': '100%',
