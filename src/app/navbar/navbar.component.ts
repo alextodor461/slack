@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AddChannelComponent } from 'app/add-channel/add-channel.component';
 import { ChannelComponent } from 'app/channel/channel.component';
 import { ChatComponent } from 'app/chat/chat.component';
+import { EditChannelComponent } from 'app/edit-channel/edit-channel.component';
 import { Channel } from 'models/channels.class';
 
 /**
@@ -60,6 +61,13 @@ export class NavbarComponent implements OnInit {
     .subscribe((changes: any) => {
       this.allChannels = changes;
       console.log(changes);
+      this.getChannel();
+    })
+  }
+
+  getChannel(){
+    this.firestore.collection('channels').doc(this.channelId).valueChanges().subscribe((channel: any) =>{
+      this.channel = new Channel(channel);
     })
     this.route.paramMap.subscribe( paramMap => {
       this.channelId = paramMap.get('id');
@@ -82,15 +90,20 @@ export class NavbarComponent implements OnInit {
 
  
 
-  getChannel() {
-    this.firestore
-    .collection('channels')
-    .doc(this.channelId)
-    .valueChanges()
-    .subscribe((channel:any) => {
-      this.channel = new Channel (channel);
-      console.log('Retrieved channel', this.channel);
-    })
+  //getChannel() {
+    //this.firestore
+    //.collection('channels')
+    //.doc(this.channelId)
+    //.valueChanges()
+    //.subscribe((channel:any) => {
+    //  this.channel = new Channel (channel);
+    //  console.log('Retrieved channel', this.channel);
+    //})
+  //}
+
+  openDialogEditChannel(): void {
+    var dialog = this.dialog.open(EditChannelComponent);
+    dialog.componentInstance.channel = this.channel;
   }
 
   private _transformer = (node: FoodNode, level: number) => {

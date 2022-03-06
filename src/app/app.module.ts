@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -29,6 +28,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { ChannelComponent } from './channel/channel.component';
 import { ChatComponent } from './chat/chat.component';
 
+import { EditChannelComponent } from './edit-channel/edit-channel.component';
 
 @NgModule({
   declarations: [
@@ -42,24 +42,24 @@ import { ChatComponent } from './chat/chat.component';
     ChannelComponent,
     ChatComponent,
 
+    EditChannelComponent
   ],
 
   imports: [
-    //NgxAuthFirebaseUIModule.forRoot({
-      //apiKey: "AIzaSyCn0uWd95vEI_dU4fmJOwYWMZuvThXDo74",
-      //authDomain: "slack-clone-abf11.firebaseapp.com",
-      //projectId: "slack-clone-abf11",
-      //storageBucket: "slack-clone-abf11.appspot.com",
-      //messagingSenderId: "336995009745",
-      //appId: "1:336995009745:web:55b176f442b0a3a9c571f0"
-    //}),
+    /*NgxAuthFirebaseUIModule.forRoot({
+      apiKey: "AIzaSyCn0uWd95vEI_dU4fmJOwYWMZuvThXDo74",
+      authDomain: "slack-clone-abf11.firebaseapp.com",
+      projectId: "slack-clone-abf11",
+      storageBucket: "slack-clone-abf11.appspot.com",
+      messagingSenderId: "336995009745",
+      appId: "1:336995009745:web:55b176f442b0a3a9c571f0"
+    }),*/
     BrowserModule,
     AppRoutingModule,
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
     BrowserAnimationsModule,
-    
     AngularFireModule.initializeApp(environment.config),
     FlexLayoutModule,
     MatTreeModule,

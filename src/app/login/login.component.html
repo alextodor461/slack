@@ -1,41 +1,40 @@
-<mat-drawer-container class="login-background" autosize>
-    <mat-toolbar class="toolbar" >
-        <mat-toolbar-row>
-            <span>Slack</span>
-        </mat-toolbar-row>
-    </mat-toolbar>
-    <div class="form-container">
-        <form class="login-field">
-            <mat-toolbar class="toolbar-login" >
-                <h4>Login</h4>
-            </mat-toolbar>
-            <div class="input-fields">
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email</label>
-                    <input type="email" class="form-control" name="email" [(ngModel)]="email">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password" [(ngModel)]="password">
+    <mat-drawer-container class="login-background" autosize>
+
+        <mat-toolbar class="toolbar" >
+            <mat-toolbar-row>
+                <img class="logo" src="assets/icons/LogoMakr-86Inc5.png" alt="">
+                <span>Slack</span>
+            </mat-toolbar-row>
+        </mat-toolbar>
+      
+        <div class="form-container">
+            <form class="login-field">
+                <div class="company-div">
+                    <h2>Slack</h2>
                 </div>
 
-                <div class="login-button-field">
-                    <button class="login-button" mat-raised-button color="primary" (click)="login()">Login</button>
+                <div class="login-div">
+                    <h2>Login</h2>   
 
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <a href="/register" style="text-decoration: none;">Need Account ? <span
-                                    class="text-danger">Register</span></a>
+                    <div class="input-fields">
+                        <div class="mb-3">
+                            <mat-icon>email</mat-icon>
+                            <label for="exampleInputEmail1" class="form-label">Email</label>
+                            <input placeholder="Enter your Email" type="email" class="form-control" name="email" [(ngModel)]="email">
                         </div>
-                        <div class="col-md-6">
-                            <a href="/forgot-password" class="text-dark" style="text-decoration: none;"> Forgot
-                                Password ? </a>
+                        <div class="mb-3">
+                            <mat-icon>lock</mat-icon>
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input placeholder="Enter your Password" type="password" class="form-control" name="password" [(ngModel)]="password">
                         </div>
+    
+                        <div class="a-tags">                       
+                            <a href="/register" style="text-decoration: none;">Register</a>                 
+                            <a href="/forgot-password" class="text-dark" style="text-decoration: none;">Forgot Password ? </a>                   
+                        </div>       
                     </div>
-                </div>
-            </div>
-        </form>
-    </div>
-
-</mat-drawer-container>
+                    <button class="login-button" mat-raised-button color="primary" (click)="login()">Login</button>
+                </div>       
+            </form>
+        </div>
+    </mat-drawer-container>
