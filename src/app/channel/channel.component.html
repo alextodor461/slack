@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Rename</h1>
+
+<div mat-dialog-content>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label >Channel Name </mat-label>
+        <input matInput [(ngModel)]="channel.channelName" placeholder="Placeholder">
+        <!-- <mat-hint>Please enter a name</mat-hint> -->
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="dialogRef.close()">Close</button>
+        <button mat-button [mat-dialog-close]="" cdkFocusInitial (click)="saveRename()">Save</button>
+      </div>
+
+</div>

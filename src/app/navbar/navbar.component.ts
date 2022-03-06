@@ -1,10 +1,12 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { Component, OnInit}  from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { ActivatedRoute } from '@angular/router';
 import { AddChannelComponent } from 'app/add-channel/add-channel.component';
+import { ChannelComponent } from 'app/channel/channel.component';
+import { ChatComponent } from 'app/chat/chat.component';
 import { Channel } from 'models/channels.class';
 
 /**
@@ -42,19 +44,53 @@ interface ExampleFlatNode {
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-   channel: Channel = new Channel();
-   allChannels: any = [];
-   channelId: any = '';
+  channel: Channel = new Channel();
+  allChannels: any = [];
+  channelId: any = '';
+  form: any;
+
+  constructor(public dialog: MatDialog, public firestore: AngularFirestore, public route: ActivatedRoute,) {
+    this.dataSource.data = TREE_DATA;
+  }
 
   ngOnInit(): void {
-    this.firestore.collection('channels').valueChanges({idField: 'customIdName'}).subscribe((changes: any) =>{
+    this.firestore
+    .collection('channels')
+    .valueChanges({ idField: 'customIdName' })
+    .subscribe((changes: any) => {
       this.allChannels = changes;
       console.log(changes);
+    })
+    this.route.paramMap.subscribe( paramMap => {
+      this.channelId = paramMap.get('id');
+      console.log('Got ID', this.channelId);
+      this.getChannel();
     })
   }
 
   openDialog(): void {
     this.dialog.open(AddChannelComponent)
+  }
+  openChannel(): void {
+    const dialog = this.dialog.open(ChannelComponent);
+    dialog.componentInstance.channel = new Channel(this.channel.toJSON());
+    dialog.componentInstance.channelId = this.channelId;
+  }
+  openChat(): void {
+    this.dialog.open(ChatComponent)
+  }
+
+ 
+
+  getChannel() {
+    this.firestore
+    .collection('channels')
+    .doc(this.channelId)
+    .valueChanges()
+    .subscribe((channel:any) => {
+      this.channel = new Channel (channel);
+      console.log('Retrieved channel', this.channel);
+    })
   }
 
   private _transformer = (node: FoodNode, level: number) => {
@@ -65,6 +101,16 @@ export class NavbarComponent implements OnInit {
     };
   };
 
+  deleteChannel() {
+    this.firestore
+    .collection('channels')
+    .doc(this.channelId)
+    .delete()
+    .then((results) => {
+      console.log(results);
+    })
+  }
+ 
   treeControl = new FlatTreeControl<ExampleFlatNode>(
     node => node.level,
     node => node.expandable,
@@ -79,9 +125,8 @@ export class NavbarComponent implements OnInit {
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  constructor(public dialog: MatDialog, public firestore: AngularFirestore, public route: ActivatedRoute,) {
-    this.dataSource.data = TREE_DATA;
-  }
+
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
+
 }

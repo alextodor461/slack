@@ -10,16 +10,21 @@ import { Channel } from 'models/channels.class';
 })
 export class AddChannelComponent implements OnInit {
   channel = new Channel();
-
+  allChannels: any = [];
   constructor(public dialogRef: MatDialogRef<AddChannelComponent>, private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
+
+
   }
 
-  save(){
-    this.firestore.collection('channels').add(this.channel.toJSON()).then((results) => {
-      console.log(results);
-      this.dialogRef.close();
-    })
+  save() {
+    this.firestore.collection('channels')
+      .add(this.channel.toJSON())
+      .then((results) => {
+        console.log(results);
+        this.dialogRef.close();
+      })
   }
 }
+

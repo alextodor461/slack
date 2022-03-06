@@ -23,6 +23,12 @@ import { RegisterComponent } from './register/register.component';
 import { VarifyEmailComponent } from './varify-email/varify-email.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'environments/environment';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { ChannelComponent } from './channel/channel.component';
+import { ChatComponent } from './chat/chat.component';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +38,10 @@ import { environment } from 'environments/environment';
     NavbarComponent,
     ForgotPasswordComponent,
     VarifyEmailComponent,
-    AddChannelComponent
+    AddChannelComponent,
+    ChannelComponent,
+    ChatComponent,
+
   ],
 
   imports: [
@@ -59,7 +68,11 @@ import { environment } from 'environments/environment';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    MatMenuModule
+    MatMenuModule,
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    AngularFirestoreModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
