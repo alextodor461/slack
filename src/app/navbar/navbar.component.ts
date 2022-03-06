@@ -61,19 +61,38 @@ export class NavbarComponent implements OnInit {
     .subscribe((changes: any) => {
       this.allChannels = changes;
       console.log(changes);
-      this.getChannel();
-    })
-  }
-
-  getChannel(){
-    this.firestore.collection('channels').doc(this.channelId).valueChanges().subscribe((channel: any) =>{
-      this.channel = new Channel(channel);
+      //this.getChannel();
     })
     this.route.paramMap.subscribe( paramMap => {
       this.channelId = paramMap.get('id');
       console.log('Got ID', this.channelId);
       this.getChannel();
+  })
+}
+
+  getChannel2() {
+    this.firestore
+    .collection('channels')
+    .doc(this.channelId)
+    .valueChanges()
+    .subscribe((channel:any) => {
+    this.channel = new Channel (channel);
+    console.log('Retrieved channel', this.channel);
     })
+  }
+
+  getChannel(){
+    this.firestore.collection('channels')
+    .doc(this.channelId)
+    .valueChanges()
+    .subscribe((channel: any) =>{
+    this.channel = new Channel(channel);
+    })
+    //this.route.paramMap.subscribe( paramMap => {
+      //this.channelId = paramMap.get('id');
+      //console.log('Got ID', this.channelId);
+      //this.getChannel2();
+    //})
   }
 
   openDialog(): void {
@@ -88,31 +107,10 @@ export class NavbarComponent implements OnInit {
     this.dialog.open(ChatComponent)
   }
 
- 
-
-  //getChannel() {
-    //this.firestore
-    //.collection('channels')
-    //.doc(this.channelId)
-    //.valueChanges()
-    //.subscribe((channel:any) => {
-    //  this.channel = new Channel (channel);
-    //  console.log('Retrieved channel', this.channel);
-    //})
-  //}
-
   openDialogEditChannel(): void {
     var dialog = this.dialog.open(EditChannelComponent);
     dialog.componentInstance.channel = this.channel;
   }
-
-  private _transformer = (node: FoodNode, level: number) => {
-    return {
-      expandable: !!node.children && node.children.length > 0,
-      name: node.name,
-      level: level,
-    };
-  };
 
   deleteChannel() {
     this.firestore
@@ -123,6 +121,15 @@ export class NavbarComponent implements OnInit {
       console.log(results);
     })
   }
+
+  private _transformer = (node: FoodNode, level: number) => {
+    return {
+      expandable: !!node.children && node.children.length > 0,
+      name: node.name,
+      level: level,
+    };
+  };
+
  
   treeControl = new FlatTreeControl<ExampleFlatNode>(
     node => node.level,
