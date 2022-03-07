@@ -29,6 +29,8 @@ import { ChannelComponent } from './channel/channel.component';
 import { ChatComponent } from './chat/chat.component';
 
 import { EditChannelComponent } from './edit-channel/edit-channel.component';
+import { UserPresenceComponent } from './user-presence/user-presence.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { EditChannelComponent } from './edit-channel/edit-channel.component';
     ChannelComponent,
     ChatComponent,
 
-    EditChannelComponent
+    EditChannelComponent,
+      UserPresenceComponent
   ],
 
   imports: [
@@ -72,6 +75,7 @@ import { EditChannelComponent } from './edit-channel/edit-channel.component';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFirestoreModule,
+    MatCardModule
     
   ],
   providers: [],

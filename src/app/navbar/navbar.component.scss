@@ -45,11 +45,11 @@
 }
 
 .channel-div{
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 60px;
+    //padding-left: 60px;
     padding-block: 10px;
 
     &:hover{
@@ -61,8 +61,21 @@
     }
 
     .more-btn{
-        margin-right: 40px;
+        //margin-right: 40px;
         visibility: hidden;
         line-height: 0;
     }
+}
+
+.user-cards {
+    width: 90%;
+    position: absolute;
+    bottom: 30px;
+    padding-left: 5px;
+}
+
+.account-circle{
+    position: relative;
+    top: 6px;
+    padding-right: 4px;
 }
