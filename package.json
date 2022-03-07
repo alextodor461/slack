@@ -27,6 +27,7 @@
     "firebase": "^9.6.7",
     "ng-particle": "^1.0.10",
     "ngx-auth-firebaseui": "^6.0.0",
+    "ngx-online-status": "^1.0.1",
     "rxfire": "^6.0.0",
     "rxjs": "~7.4.0",
     "zone.js": "~0.11.4"

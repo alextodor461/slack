@@ -9,6 +9,7 @@ import { ChannelComponent } from 'app/channel/channel.component';
 import { ChatComponent } from 'app/chat/chat.component';
 import { EditChannelComponent } from 'app/edit-channel/edit-channel.component';
 import { Channel } from 'models/channels.class';
+import { subscribeOn } from 'rxjs';
 
 /**
  * Food data with nested structure.
@@ -47,6 +48,7 @@ interface ExampleFlatNode {
 export class NavbarComponent implements OnInit {
   channel: Channel = new Channel();
   allChannels: any = [];
+  allUsers: any = [];
   channelId: any = '';
   form: any;
 
@@ -68,6 +70,13 @@ export class NavbarComponent implements OnInit {
       console.log('Got ID', this.channelId);
       this.getChannel();
   })
+    this.firestore
+    .collection('users')
+    .valueChanges()
+    .subscribe((current: any) => {
+      console.log('Current User from DB', current);
+      this.allUsers = current;
+    });
 }
 
   getChannel2() {

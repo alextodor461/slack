@@ -42,7 +42,8 @@
     </mat-tree>
 
     <div class="user-cards">
-      <mat-card><mat-icon class="account-circle">account_circle</mat-icon>User</mat-card>
+      <mat-card *ngFor="let user of allUsers"><mat-icon class="account-circle">account_circle</mat-icon>
+        {{ user.displayName }}</mat-card>
     </div>
   </mat-drawer>
 

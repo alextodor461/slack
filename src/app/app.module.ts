@@ -22,6 +22,7 @@ import { RegisterComponent } from './register/register.component';
 import { VarifyEmailComponent } from './varify-email/varify-email.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'environments/environment';
+
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
@@ -29,8 +30,9 @@ import { ChannelComponent } from './channel/channel.component';
 import { ChatComponent } from './chat/chat.component';
 
 import { EditChannelComponent } from './edit-channel/edit-channel.component';
-import { UserPresenceComponent } from './user-presence/user-presence.component';
 import { MatCardModule } from '@angular/material/card';
+import { OnlineStatusModule } from 'ngx-online-status';
+
 
 @NgModule({
   declarations: [
@@ -43,20 +45,11 @@ import { MatCardModule } from '@angular/material/card';
     AddChannelComponent,
     ChannelComponent,
     ChatComponent,
-
     EditChannelComponent,
-      UserPresenceComponent
+   
   ],
 
   imports: [
-    /*NgxAuthFirebaseUIModule.forRoot({
-      apiKey: "AIzaSyCn0uWd95vEI_dU4fmJOwYWMZuvThXDo74",
-      authDomain: "slack-clone-abf11.firebaseapp.com",
-      projectId: "slack-clone-abf11",
-      storageBucket: "slack-clone-abf11.appspot.com",
-      messagingSenderId: "336995009745",
-      appId: "1:336995009745:web:55b176f442b0a3a9c571f0"
-    }),*/
     BrowserModule,
     AppRoutingModule,
     MatToolbarModule,
@@ -72,10 +65,12 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     FormsModule,
     MatMenuModule,
+    AngularFireModule,
     AngularFireAuthModule,
-    AngularFireDatabaseModule,
     AngularFirestoreModule,
-    MatCardModule
+    AngularFireDatabaseModule,
+    MatCardModule,
+    OnlineStatusModule
     
   ],
   providers: [],
