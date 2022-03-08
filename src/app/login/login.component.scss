@@ -58,6 +58,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: space-evenly;
         background-color: #0f0f0fb0;
         height: 100%;
         width: 65%;
@@ -71,10 +72,8 @@
 .login-button{
     background: none;
     width: 70%;
-    margin-top: 100px;
     border-radius: 0;
     border: 1px solid #ff8800;
-    height: 50px;
     font-size: 20px;
     color: #ff8800;
 
