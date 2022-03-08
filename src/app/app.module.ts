@@ -32,6 +32,7 @@ import { ChatComponent } from './chat/chat.component';
 import { EditChannelComponent } from './edit-channel/edit-channel.component';
 import { MatCardModule } from '@angular/material/card';
 import { OnlineStatusModule } from 'ngx-online-status';
+import { ThreadsComponent } from './threads/threads.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { OnlineStatusModule } from 'ngx-online-status';
     ChannelComponent,
     ChatComponent,
     EditChannelComponent,
+    ThreadsComponent,
    
   ],
 
