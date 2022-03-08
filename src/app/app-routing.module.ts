@@ -31,7 +31,11 @@ const routes: Routes = [
     {
         path: 'threads',
         component: ThreadsComponent
-    }]},
+    },
+    {
+      path: 'chat/:id',
+      component: ChatComponent
+    },]},
   { path: 'register', component: RegisterComponent },
   { path: 'varify-email', component: VarifyEmailComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },

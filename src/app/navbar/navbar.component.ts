@@ -107,11 +107,13 @@ export class NavbarComponent implements OnInit {
   openDialog(): void {
     this.dialog.open(AddChannelComponent)
   }
+  
   openChannel(): void {
     const dialog = this.dialog.open(ChannelComponent);
     dialog.componentInstance.channel = new Channel(this.channel.toJSON());
     dialog.componentInstance.channelId = this.channelId;
   }
+
   openChat(): void {
     this.dialog.open(ChatComponent);
     this.getChannel2();
