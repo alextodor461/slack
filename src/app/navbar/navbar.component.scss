@@ -2,15 +2,24 @@
     height: 100vh;
 }
 
+
+
 .toolbar{
     background-color: #fa9e12;
+    
 
     .menu-btn{
         background: none;
         border: none;
         cursor: pointer;
     }
+
+    .container2{
+        justify-content: space-between;
+    }
 }
+
+
 
 .sidenav{
     width: 300px !important;

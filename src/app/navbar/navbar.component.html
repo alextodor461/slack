@@ -1,10 +1,13 @@
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="sidenav" [opened]="true" mode="side">
-    <button routerLink="threads" class="threads-btn"><mat-icon>chat</mat-icon>Threads</button>
+    <button routerLink="threads" class="threads-btn">
+      <mat-icon>chat</mat-icon>Threads
+    </button>
     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="tree">
       <mat-tree-node class="channel-tree" *matTreeNodeDef="let node" matTreeNodeToggle>
-        <div [routerLink]="['chat/' + channel.customIdName]" class="channel-div" *ngFor="let channel of allChannels, let i = index">
-          <div >#
+        <div [routerLink]="['chat/' + channel.customIdName]" class="channel-div"
+          *ngFor="let channel of allChannels, let i = index">
+          <div>#
             {{ channel.channelName }}
           </div>
           <div>
@@ -39,8 +42,8 @@
       </mat-nested-tree-node>
     </mat-tree>
 
-    <div class="user-cards">
-      <mat-card *ngFor="let user of allUsers">
+    <div class="user-cards" >
+      <mat-card *ngFor="let user of allUsers" [routerLink]="['user-chat/' + user.customIdUser]">
         <div class="user-cards-2">
           <mat-icon class="account-circle">account_circle</mat-icon>
           <div class="led-green"></div>
@@ -52,11 +55,17 @@
 
   <div class="example-sidenav-content">
     <mat-toolbar class="toolbar" color="primary">
-      <mat-toolbar-row>
-        <button type="button" mat-button (click)="drawer.toggle()" mat-icon-button class="menu-btn">
-          <mat-icon>menu</mat-icon>
+      <mat-toolbar-row class="container2">
+        <div>
+          <button type="button" mat-button (click)="drawer.toggle()" mat-icon-button class="menu-btn">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span>Slack</span>
+        </div>
+        <button type="button" mat-button (click)="logout()" mat-icon-button class="menu-btn">
+          <mat-icon>logout</mat-icon>
         </button>
-        <span>Slack</span>
+
       </mat-toolbar-row>
     </mat-toolbar>
 

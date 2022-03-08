@@ -29,11 +29,7 @@ export class ChatComponent implements OnInit {
     .subscribe((channel: any) =>{
     this.channel = new Channel(channel);
     })
-    //this.route.paramMap.subscribe( paramMap => {
-      //this.channelId = paramMap.get('id');
-      //console.log('Got ID', this.channelId);
-      //this.getChannel2();
-    //})
+    
   }
 
 }

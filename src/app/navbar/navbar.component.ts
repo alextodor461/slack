@@ -9,7 +9,9 @@ import { ChannelComponent } from 'app/channel/channel.component';
 import { ChatComponent } from 'app/chat/chat.component';
 import { EditChannelComponent } from 'app/edit-channel/edit-channel.component';
 import { Channel } from 'models/channels.class';
-
+import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { User } from 'models/users.class';
 
 /**
  * Food data with nested structure.
@@ -47,67 +49,92 @@ interface ExampleFlatNode {
 })
 export class NavbarComponent implements OnInit {
   channel: Channel = new Channel();
+  user: User = new User();
   allChannels: any = [];
   allUsers: any = [];
   channelId: any = '';
+  userId: any = '';
   form: any;
 
-  constructor(public dialog: MatDialog, public firestore: AngularFirestore, public route: ActivatedRoute,) {
+  constructor(public dialog: MatDialog, private fireauth: AngularFireAuth, private router: Router, public firestore: AngularFirestore, public route: ActivatedRoute,) {
     this.dataSource.data = TREE_DATA;
   }
 
   ngOnInit(): void {
     this.firestore
-    .collection('channels')
-    .valueChanges({ idField: 'customIdName' })
-    .subscribe((changes: any) => {
-      this.allChannels = changes;
-      console.log(changes);
-      //this.getChannel();
+      .collection('channels')
+      .valueChanges({ idField: 'customIdName' })
+      .subscribe((changes: any) => {
+        this.allChannels = changes;
+        console.log(changes);
+        //this.getChannel();
+      })
+      this.route.paramMap.subscribe(paramMap => {
+        this.channelId = paramMap.get('id');
+        console.log('Got ID', this.channelId);
+        this.getChannel();
+      })
+
+
+      this.firestore
+      .collection('users')
+      .valueChanges({ idField: 'customIdUser' })
+      .subscribe((userChange: any) => {
+        this.allUsers = userChange;
+        console.log(userChange);
+      })
+    this.route.paramMap.subscribe(paramMap => {
+      this.userId = paramMap.get('uid');
+      console.log('Got UID', this.userId);
+      this.getUser();
     })
-    this.route.paramMap.subscribe( paramMap => {
-      this.channelId = paramMap.get('id');
-      console.log('Got ID', this.channelId);
-      this.getChannel();
-  })
+
+
+
+
+
     this.firestore
-    .collection('users')
-    .valueChanges()
-    .subscribe((current: any) => {
-      console.log('Current User from DB', current);
-      this.allUsers = current;
-    });
-}
+      .collection('users')
+      .valueChanges()
+      .subscribe((current: any) => {
+        console.log('Current User from DB', current);
+        this.allUsers = current;
+      });
+  }
 
   getChannel2() {
     this.firestore
-    .collection('channels')
-    .doc(this.channelId)
-    .valueChanges()
-    .subscribe((channel:any) => {
-    this.channel = new Channel (channel);
-    console.log('Retrieved channel', this.channel);
-    })
+      .collection('channels')
+      .doc(this.channelId)
+      .valueChanges()
+      .subscribe((channel: any) => {
+        this.channel = new Channel(channel);
+        console.log('Retrieved channel', this.channel);
+      })
   }
 
-  getChannel(){
+  getChannel() {
     this.firestore.collection('channels')
-    .doc(this.channelId)
-    .valueChanges()
-    .subscribe((channel: any) =>{
-    this.channel = new Channel(channel);
-    })
-    //this.route.paramMap.subscribe( paramMap => {
-      //this.channelId = paramMap.get('id');
-      //console.log('Got ID', this.channelId);
-      //this.getChannel2();
-    //})
+      .doc(this.channelId)
+      .valueChanges()
+      .subscribe((channel: any) => {
+        this.channel = new Channel(channel);
+      })
+  }
+
+  getUser() {
+    this.firestore.collection('users')
+      .doc(this.userId)
+      .valueChanges()
+      .subscribe((user: any) => {
+        this.user = new User(user);
+      })
   }
 
   openDialog(): void {
     this.dialog.open(AddChannelComponent)
   }
-  
+
   openChannel(): void {
     const dialog = this.dialog.open(ChannelComponent);
     dialog.componentInstance.channel = new Channel(this.channel.toJSON());
@@ -126,13 +153,25 @@ export class NavbarComponent implements OnInit {
 
   deleteChannel() {
     this.firestore
-    .collection('channels')
-    .doc(this.channelId)
-    .delete()
-    .then((results) => {
-      console.log(results);
+      .collection('channels')
+      .doc(this.channelId)
+      .delete()
+      .then((results) => {
+        console.log(results);
+      })
+  }
+
+  // sign out
+  logout() {
+    this.fireauth.signOut().then(() => {
+      localStorage.removeItem('token');
+      this.fireauth.signOut();
+      this.router.navigate(['/login']);
+    }, err => {
+      alert(err.message);
     })
   }
+
 
   private _transformer = (node: FoodNode, level: number) => {
     return {
@@ -142,7 +181,7 @@ export class NavbarComponent implements OnInit {
     };
   };
 
- 
+
   treeControl = new FlatTreeControl<ExampleFlatNode>(
     node => node.level,
     node => node.expandable,

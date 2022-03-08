@@ -33,18 +33,6 @@ export class AuthService {
     })
   }
 
-  // sign out
-  logout() {
-    this.fireauth.signOut().then(() => {
-      localStorage.removeItem('token');
-      this.fireauth.signOut();
-      this.router.navigate(['/login']);
-    }, err => {
-      alert(err.message);
-    })
-  }
-
-
 
   // register method
   register(email: string, password: string) {

@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './register/register.component';
 import { ThreadsComponent } from './threads/threads.component';
+import { UserChatComponent } from './user-chat/user-chat.component';
 
 import { VarifyEmailComponent } from './varify-email/varify-email.component';
 
@@ -19,6 +20,10 @@ const routes: Routes = [
     {
       path: 'chat/:id',
       component: ChatComponent
+    },
+    {
+      path: 'user-chat/:uid',
+      component: UserChatComponent
     },
     {
         path: 'threads',
