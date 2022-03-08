@@ -64,7 +64,8 @@
         width: 65%;
 
         h2{
-            margin-top: 20px;
+            letter-spacing: 2.5px;
+            margin: 0;
         }
     }
 }
@@ -106,9 +107,11 @@
         margin-top: 15px;
         margin-bottom: 15px;
         width: 100%;
+        align-items: center;
 
         input{
             width: 70%;
+            height: 100%;
             background: none;
             border: none;
             border-bottom: 1px solid white;
