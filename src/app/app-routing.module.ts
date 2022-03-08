@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChannelComponent } from './channel/channel.component';
+import { ChatComponent } from './chat/chat.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -16,9 +17,14 @@ const routes: Routes = [
   { path: 'navbar', component: NavbarComponent,
   children: [
     {
+      path: 'chat/:id',
+      component: ChatComponent
+    },
+    {
         path: 'threads',
         component: ThreadsComponent
-    }]},
+    },
+    ]},
   { path: 'user/:id', component: NavbarComponent },
   { path: 'channel/:id', component: NavbarComponent,
    children: [

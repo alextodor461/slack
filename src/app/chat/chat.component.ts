@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Channel } from 'models/channels.class';
 
 @Component({
   selector: 'app-chat',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatComponent implements OnInit {
 
+  channel: Channel = new Channel();
   constructor() { }
 
   ngOnInit(): void {
