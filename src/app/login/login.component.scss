@@ -231,3 +231,16 @@ section .row:nth-child(even) div:nth-child(2){
         transform: translateX(0);
     }
 }
+
+.img-register{
+    width: 150px;
+    height: 150px;
+}
+
+.company-div-2{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}

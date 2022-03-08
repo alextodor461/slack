@@ -69,10 +69,14 @@
     }
 }
 
+.icon{
+    padding-right: 20px;
+}
+
 .login-button{
     background: none;
     width: 70%;
-    margin-top: 100px;
+    margin-top: 50px;
     border-radius: 0;
     border: 1px solid #ff8800;
     height: 50px;
@@ -100,7 +104,7 @@
     justify-content: center;
     align-items: center;
     outline: none;
-    width: 70%;
+    width: 80%;
 
     .mb-3{
         display: flex;
@@ -136,4 +140,17 @@
 .mat-form-field-suffix{
     display: flex !important;
     align-items: center !important;
+}
+
+.img-register{
+    width: 150px;
+    height: 150px;
+}
+
+.company-div-2{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
 }

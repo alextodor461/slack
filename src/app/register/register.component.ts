@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthService } from 'app/shared/auth.service';
+import { User } from 'models/users.class';
+
 
 
 @Component({
@@ -11,8 +14,10 @@ export class RegisterComponent implements OnInit {
 
   email : string = '';
   password : string = '';
+  user = new User();
+  allUsers : any = [];
 
-  constructor(private auth : AuthService) { }
+  constructor(private auth : AuthService, private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
   }
@@ -33,5 +38,16 @@ export class RegisterComponent implements OnInit {
 
     this.email = '';
     this.password = '';
+    this.create();
+  }
+
+  create() {
+    this.firestore.collection('users')
+      .add(this.user.toJSON())
+      .then((results) => {
+        console.log(results);
+        
+      })
   }
 }
+

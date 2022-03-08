@@ -1,7 +1,6 @@
+<mat-drawer-container class="login-background" autosize>
 
- <mat-drawer-container class="login-background" autosize>
-
-    <mat-toolbar class="toolbar" >
+    <mat-toolbar class="toolbar">
         <mat-toolbar-row>
             <img class="logo" src="assets/icons/LogoMakr-86Inc5.png" alt="">
             <span>Slack</span>
@@ -11,31 +10,42 @@
     <div class="form-container">
         <form class="login-field">
             <div class="login-div">
-                <h2>Register</h2>   
+                <h2>Register</h2>
 
                 <div class="input-fields">
                     <div class="mb-3">
-                        <mat-icon>email</mat-icon>
+                        <mat-icon class="icon">email</mat-icon>
                         <label for="exampleInputEmail1" class="form-label">Email</label>
-                        <input placeholder="Enter your Email" type="email" class="form-control" name="email" [(ngModel)]="email">
+                        <input placeholder="Enter your Email" type="email" class="form-control" name="email"
+                            [(ngModel)]="email">
                     </div>
                     <div class="mb-3">
-                        <mat-icon>lock</mat-icon>
+                        <mat-icon class="icon">lock</mat-icon>
                         <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input placeholder="Enter your Password" type="password" class="form-control" name="password" [(ngModel)]="password">
+                        <input placeholder="Enter your Password" type="password" class="form-control" name="password"
+                            [(ngModel)]="password">
+                    </div>
+                    <div class="mb-3">
+                        <mat-icon class="icon">account_circle</mat-icon>
+                        <label for="exampleInputPassword1" class="form-label">Name</label>
+                        <input placeholder="Enter your Slack Name"  class="form-control" name="password"
+                            [(ngModel)]="user.displayName">
                     </div>
 
-                    <div class="a-tags">                       
-                        <a href="/login" style="text-decoration: none;">Have an account ? <span class="text-danger">Login</span></a>                 
-                    </div>       
+                    <div class="a-tags">
+                        <a href="/login" style="text-decoration: none;">Have an account ? <span
+                                class="text-danger">Login</span></a>
+                    </div>
                 </div>
                 <button class="login-button" mat-raised-button color="primary" (click)="register()">Register</button>
-            </div>  
-            
+            </div>
+
             <div class="company-div">
-                <h2>Slack</h2>
+                <div class="company-div-2">
+                    <h2>Slack</h2>
+                    <img class="img-register" src="assets\icons\LogoMakr-86Inc5.png">
+                </div>
             </div>
         </form>
     </div>
 </mat-drawer-container>
-
