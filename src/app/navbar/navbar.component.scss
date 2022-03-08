@@ -22,6 +22,26 @@
     cursor: pointer;
 }
 
+.threads-btn{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: none;
+    width: 100%;
+    background: none;
+    cursor: pointer;
+    color: white;
+    padding: 20px 10px;
+
+    mat-icon{
+        margin-right: 10px;
+    }
+
+    &:hover{
+        background-color: rgb(78, 78, 78);
+    }
+}
+
 .channel-tree{
     display: flex;
     flex-direction: column;
