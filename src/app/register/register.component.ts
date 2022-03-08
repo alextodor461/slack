@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthService } from 'app/shared/auth.service';
 import { User } from 'models/users.class';
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit {
   user = new User();
   allUsers : any = [];
 
-  constructor(private auth : AuthService, private firestore: AngularFirestore) { }
+  constructor(private auth : AuthService, private firestore: AngularFirestore, private database: AngularFireDatabase) { }
 
   ngOnInit(): void {
   }
@@ -49,5 +50,7 @@ export class RegisterComponent implements OnInit {
         
       })
   }
+
+ 
 }
 

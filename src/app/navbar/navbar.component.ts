@@ -9,7 +9,7 @@ import { ChannelComponent } from 'app/channel/channel.component';
 import { ChatComponent } from 'app/chat/chat.component';
 import { EditChannelComponent } from 'app/edit-channel/edit-channel.component';
 import { Channel } from 'models/channels.class';
-import { subscribeOn } from 'rxjs';
+
 
 /**
  * Food data with nested structure.
