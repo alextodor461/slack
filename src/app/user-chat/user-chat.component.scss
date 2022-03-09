@@ -2,6 +2,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    .mat-card{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 }
 
 .mat-card-div{
@@ -18,11 +24,6 @@
         height: 80vh;
     }
 }
-
-.example-form {
-    width: 94%;
-  
-  }
   
   .example-full-width {
     width: 100%;

@@ -43,7 +43,6 @@ export class UserChatComponent implements OnInit {
       //})
   //}
 
-
   send() {
     this.firestore
       .collection('users')
