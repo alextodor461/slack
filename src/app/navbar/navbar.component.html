@@ -12,7 +12,7 @@
           </div>
           <div>
             <button class="more-btn" mat-button [matMenuTriggerFor]="menu"
-              [routerLink]="['/channel/' + channel.customIdName]">
+              [routerLink]="['channel/' + channel.customIdName]">
               <mat-icon>more_horiz</mat-icon>
             </button>
           </div>
@@ -43,7 +43,7 @@
     </mat-tree>
 
     <div class="user-cards" >
-      <mat-card *ngFor="let user of allUsers" [routerLink]="['user-chat/' + user.customIdUser]">
+      <mat-card [routerLink]="['user-chat/' + user.customIdUser]" *ngFor="let user of allUsers">
         <div class="user-cards-2">
           <mat-icon class="account-circle">account_circle</mat-icon>
           <div class="led-green"></div>
@@ -62,10 +62,11 @@
           </button>
           <span>Slack</span>
         </div>
-        <button type="button" mat-button (click)="logout()" mat-icon-button class="menu-btn">
-          <mat-icon>logout</mat-icon>
-        </button>
-
+        <button mat-button [matMenuTriggerFor]="menu"><mat-icon>account_circle</mat-icon></button>
+          <mat-menu class="menu" #menu="matMenu">
+            <img class="user-img" src="assets/icons/user.png" alt="">
+            <button class="log-out-btn" (click)="logout()" mat-menu-item>Log Out</button>
+          </mat-menu>
       </mat-toolbar-row>
     </mat-toolbar>
 

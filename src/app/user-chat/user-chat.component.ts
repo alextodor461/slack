@@ -10,7 +10,6 @@ import { User } from 'models/users.class';
 })
 export class UserChatComponent implements OnInit {
   userId: any = '';
-
   user: User = new User();
   constructor(public firestore: AngularFirestore, public route: ActivatedRoute) { }
 

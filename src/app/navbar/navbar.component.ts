@@ -84,14 +84,10 @@ export class NavbarComponent implements OnInit {
         console.log(userChange);
       })
     this.route.paramMap.subscribe(paramMap => {
-      this.userId = paramMap.get('uid');
-      console.log('Got UID', this.userId);
+      this.userId = paramMap.get('id');
+      console.log('Got ID', this.userId);
       this.getUser();
     })
-
-
-
-
 
     this.firestore
       .collection('users')
