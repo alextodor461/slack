@@ -109,10 +109,23 @@
     padding-right: 4px;
 }
 
+.mat-card{
+    height: 18px;
+    margin-top: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    &:hover{
+        background-color: rgb(78, 78, 78);
+    }
+}
+
 .user-cards-2{
     display: flex;
     flex-direction: row;
     align-items: baseline;
+
 }
 
 .led-green {

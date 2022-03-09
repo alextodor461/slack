@@ -1,4 +1,14 @@
-<div class="mat-card-div">
-    <mat-card>{{ user.displayName }}</mat-card>
-</div>
+<div class="chat-container"> 
+    <div class="mat-card-div">
+        <mat-card>{{ user.displayName }}</mat-card>
+    </div>
 
+    <form class="example-form">
+        <mat-form-field class="example-full-width" appearance="fill" >
+            <mat-label>Message</mat-label>
+            <input matInput #message maxlength="256" placeholder="">
+            <!--<mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint> -->
+            <!--<mat-hint align="end">{{message.value.length}} / 256</mat-hint> -->
+        </mat-form-field>
+    </form>
+</div>

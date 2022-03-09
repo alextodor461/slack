@@ -42,6 +42,8 @@
       </mat-nested-tree-node>
     </mat-tree>
 
+
+
     <div class="user-cards" >
       <mat-card *ngFor="let user of allUsers" [routerLink]="['user-chat/' + user.customIdUser]">
         <div class="user-cards-2">
@@ -52,6 +54,9 @@
       </mat-card>
     </div>
   </mat-drawer>
+
+
+  
 
   <div class="example-sidenav-content">
     <mat-toolbar class="toolbar" color="primary">

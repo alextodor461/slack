@@ -1,13 +1,28 @@
+.chat-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .mat-card-div{
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    height: 90vh;
+    height: 85vh;
     width: 100%;
+    
 
     mat-card{
         width: 90%;
         height: 80vh;
     }
 }
+
+.example-form {
+    width: 94%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
