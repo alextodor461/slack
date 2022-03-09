@@ -7,7 +7,7 @@
       <mat-tree-node class="channel-tree" *matTreeNodeDef="let node" matTreeNodeToggle>
         <div [routerLink]="['chat/' + channel.customIdName]" class="channel-div"
           *ngFor="let channel of allChannels, let i = index">
-          <div>#
+          <div class="channel-name">#
             {{ channel.channelName }}
           </div>
           <div>

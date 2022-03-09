@@ -85,11 +85,10 @@
 }
 
 .channel-div{
-    width: 90%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    //padding-left: 60px;
     padding-block: 10px;
 
     &:hover{
@@ -101,9 +100,13 @@
     }
 
     .more-btn{
-        //margin-right: 40px;
+        margin-right: 20px;
         visibility: hidden;
         line-height: 0;
+    }
+
+    .channel-name{
+        margin-left: 20px;
     }
 }
 
