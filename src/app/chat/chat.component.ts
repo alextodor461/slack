@@ -10,7 +10,6 @@ import { Channel } from 'models/channels.class';
 })
 export class ChatComponent implements OnInit {
   channelId: any = '';
-
   channel: Channel = new Channel();
   constructor(public firestore: AngularFirestore, public route: ActivatedRoute) { }
   
@@ -29,7 +28,5 @@ export class ChatComponent implements OnInit {
     .subscribe((channel: any) =>{
     this.channel = new Channel(channel);
     })
-    
   }
-
 }

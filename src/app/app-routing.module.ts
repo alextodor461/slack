@@ -22,7 +22,7 @@ const routes: Routes = [
       component: ChatComponent
     },
     {
-      path: 'user-chat/:uid',
+      path: 'user-chat/:id',
       component: UserChatComponent
     },
     {
