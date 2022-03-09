@@ -8,15 +8,15 @@
     width: 100%;
 
     mat-card{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
         width: 90%;
         height: 80vh;
     }
 
     app-input-chat{
         width: 100%;
-        margin: auto;
-        position: absolute;
-        bottom: 4em;
     }
 }
 
