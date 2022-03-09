@@ -45,7 +45,7 @@
 
 
     <div class="user-cards" >
-      <mat-card [routerLink]="['user-chat/' + user.customIdUser]" *ngFor="let user of allUsers">
+      <mat-card *ngFor="let user of allUsers"  [routerLink]="['user-chat/' + user.customIdUser]">
         <div class="user-cards-2">
           <mat-icon class="account-circle">account_circle</mat-icon>
           <div class="led-green"></div>

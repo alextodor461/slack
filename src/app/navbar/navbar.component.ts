@@ -69,33 +69,25 @@ export class NavbarComponent implements OnInit {
         console.log(changes);
         //this.getChannel();
       })
-      this.route.paramMap.subscribe(paramMap => {
-        this.channelId = paramMap.get('id');
-        console.log('Got ID', this.channelId);
-        this.getChannel();
-      })
+    this.route.paramMap.subscribe(paramMap => {
+      this.channelId = paramMap.get('id');
+      console.log('Got ID', this.channelId);
+      this.getChannel();
+    })
 
-
-      this.firestore
+    this.firestore
       .collection('users')
       .valueChanges({ idField: 'customIdUser' })
-      .subscribe((userChange: any) => {
-        this.allUsers = userChange;
-        console.log(userChange);
-      })
+      .subscribe((current: any) => {
+        console.log('Current User from DB', current);
+        this.allUsers = current;
+      });
+
     this.route.paramMap.subscribe(paramMap => {
       this.userId = paramMap.get('id');
       console.log('Got ID', this.userId);
       this.getUser();
     })
-
-    this.firestore
-      .collection('users')
-      .valueChanges()
-      .subscribe((current: any) => {
-        console.log('Current User from DB', current);
-        this.allUsers = current;
-      });
   }
 
   getChannel2() {
