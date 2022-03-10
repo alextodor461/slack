@@ -257,26 +257,22 @@ section .row:nth-child(even) div:nth-child(2){
         flex-direction: column;
     }
 
-    .img-register {
-        height: 100px;
-        width: 100px;
-    }
-
     .login-div {
         width: 100% !important;
+        h2{
+            font-size: 15px;
+        }
     }
 
     .mb-3 {
         flex-direction: column;
+        margin-top: 0 !important;
         input{
             text-align: center;
             font-size: 12px;
             width: 100% !important;
+            margin-top: 5px;
         }
-    }
-
-    .mobile-mb10 {
-        margin-bottom: 10px;
     }
 
     .a-tags{

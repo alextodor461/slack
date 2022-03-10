@@ -184,8 +184,5 @@ export class NavbarComponent implements OnInit {
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-
-
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
-
 }

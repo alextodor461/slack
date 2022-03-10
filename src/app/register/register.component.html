@@ -10,24 +10,24 @@
     <div class="form-container">
         <form class="login-field">
             <div class="login-div">
-                <h2>Register</h2>
+                <h2>- Register -</h2>
 
                 <div class="input-fields">
                     <div class="mb-3">
                         <mat-icon class="icon">email</mat-icon>
-                        <label for="exampleInputEmail1" class="form-label">Email</label>
+                        <label for="exampleInputEmail1" class="form-label mobile-hide">Email</label>
                         <input placeholder="Enter your Email" type="email" class="form-control" name="email"
                             [(ngModel)]="email">
                     </div>
                     <div class="mb-3">
                         <mat-icon class="icon">lock</mat-icon>
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <label for="exampleInputPassword1" class="form-label mobile-hide">Password</label>
                         <input placeholder="Enter your Password" type="password" class="form-control" name="password"
                             [(ngModel)]="password">
                     </div>
                     <div class="mb-3">
                         <mat-icon class="icon">account_circle</mat-icon>
-                        <label for="exampleInputPassword1" class="form-label">Name</label>
+                        <label for="exampleInputPassword1" class="form-label mobile-hide">Name</label>
                         <input placeholder="Enter your Slack Name"  class="form-control" name="password"
                             [(ngModel)]="user.displayName">
                     </div>
@@ -41,7 +41,7 @@
             </div>
 
             <div class="company-div">
-                <div class="company-div-2">
+                <div class="company-div-2 mobile-hide">
                     <h2>Slack</h2>
                     <img class="img-register" src="assets\icons\LogoMakr-86Inc5.png">
                 </div>

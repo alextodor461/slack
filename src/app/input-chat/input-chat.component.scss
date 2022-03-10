@@ -1,12 +1,9 @@
-.form-field{
-    
-    input{
-        width: 100%;
-        height: 6em;
-        border-radius: 5px;
-        border: 1px solid rgb(156, 156, 156);
-        outline: none;
-        background-color: rgb(100, 100, 100);
-        color: white;
-    }
+
+.example-full-width{
+    width: 100%;
+}
+
+.chat-container2{
+    display: flex;
+    align-items: baseline;
 }
