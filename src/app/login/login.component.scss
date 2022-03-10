@@ -257,17 +257,13 @@ section .row:nth-child(even) div:nth-child(2){
         flex-direction: column;
     }
 
-    .img-register {
-        height: 100px;
-        width: 100px;
-    }
-
     .login-div {
         width: 100% !important;
     }
 
     .mb-3 {
         flex-direction: column;
+        margin-top: 0 !important;
         input{
             text-align: center;
             font-size: 12px;
