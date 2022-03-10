@@ -20,17 +20,7 @@ export class ChannelComponent implements OnInit {
     public route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    //this.firestore
-    //.collection('channels')
-    //.valueChanges({idField: 'customIdName'}) 
-    //.subscribe((changes: any) => {
-      //console.log('Received changes from DB', changes);
-      //this.allChannels = changes;
-    //})
-    //this.route.paramMap.subscribe( paramMap => {
-      //this.channelId = paramMap.get('id');
-      //console.log('Got ID', this.channelId);
-    //})
+   
   }
 
   saveRename() {

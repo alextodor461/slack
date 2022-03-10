@@ -19,7 +19,8 @@ export class AddChannelComponent implements OnInit {
   }
 
   save() {
-    this.firestore.collection('channels')
+    this.firestore
+      .collection('channels')
       .add(this.channel.toJSON())
       .then((results) => {
         console.log(results);

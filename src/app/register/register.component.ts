@@ -43,7 +43,8 @@ export class RegisterComponent implements OnInit {
   }
 
   create() {
-    this.firestore.collection('users')
+    this.firestore
+    .collection('users')
       .add(this.user.toJSON())
       .then((results) => {
         console.log(results);

@@ -1,4 +1,5 @@
 
+
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
@@ -11,26 +12,28 @@ import { User } from 'models/users.class';
   styleUrls: ['./user-chat.component.scss']
 })
 export class UserChatComponent implements OnInit {
+  messages: any = [];
   userId: any = '';
   user: User = new User();
-  message: any = '';
   allChannels: any = [];
-  messageText: any;
+  
+  
+
   constructor(public firestore: AngularFirestore, public route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(paramMap => {
-      this.userId = paramMap.get('id');
+   this.route.paramMap.subscribe(paramMap => {
+     this.userId = paramMap.get('id');
       console.log('Got ID', this.userId);
       this.getUser();
     })
   }
   getUser() {
     this.firestore.collection('users')
-      .doc(this.userId)
+     .doc(this.userId)
       .valueChanges()
       .subscribe((user: any) => {
-        this.user = new User(user);
+       this.user = new User(user);
       })
   }
   //getMessage() {
@@ -38,20 +41,21 @@ export class UserChatComponent implements OnInit {
       //.collection('users')
       //.doc(this.userId)
       //.valueChanges()
-      //.subscribe((channel: any) => {
-        //this.channel = new Channel(channel);
+      //.subscribe((message: any) => {
+      //  this.message = new this.messageText(message);
       //})
-  //}
+ 
 
 
   send() {
     this.firestore
       .collection('users')
       .doc(this.userId)
-      .update({ message: this.messageText.toJSON() })
+      .update(this.messages.toJSON())
       .then((results) => {
         console.log(results);
 
       })
   }
-}
+  }
+

@@ -3,18 +3,19 @@ export class User{
       throw new Error('Method not implemented.');
     }
     displayName: string;
-    messageText: string;
+    
+    public messages: string[] = [];
 
     constructor(obj?: any){
         this.displayName = obj ? obj.displayName: '';
-        this.messageText = obj ? obj.messageText: '';
+        this.messages = obj ? obj.messageText: '';
     }
 
     //In JSON umwandeln
     public toJSON(){
         return{
             displayName: this.displayName,
-            messageText: this.messageText
+            messages: this.messages
         }
     }
 }

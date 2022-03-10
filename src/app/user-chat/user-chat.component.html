@@ -1,14 +1,14 @@
 <div class="chat-container">
     <div class="mat-card-div">
         <mat-card>{{ user.displayName }}</mat-card>
-        <mat-card *ngFor="let user of allChannels, let i = index"></mat-card>
+        <mat-card > {{ user.messages }}</mat-card>
     </div>
 
     <form class="example-form">
         <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Message</mat-label>
                 <div class="chat-container2">
-                <input matInput [(ngModel)]="user.messageText" #message maxlength="256" placeholder="">
+                <input matInput [(ngModel)]="user.messages" #message maxlength="256" placeholder="">
                 <!--<mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint> -->
                 <!--<mat-hint align="end">{{message.value.length}} / 256</mat-hint> -->
                 <button mat-button (click)="send()" cdkFocusInitial><mat-icon class="send">send</mat-icon></button>
