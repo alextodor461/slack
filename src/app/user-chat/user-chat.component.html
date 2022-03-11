@@ -1,28 +1,26 @@
 <div class="chat-container">
     <div class="mat-card-div">
-        <mat-card>{{ user.displayName }}
+        <mat-card>Nachricht an {{ user.displayName }}
+            <div class="messages-div">
+                <div class="post" *ngFor="let message of allMessages">
+                    <img src="assets/icons/user.png" alt="">
+                    {{ message.post }}
+                </div>
+            </div>
 
-            <mat-card class="post" *ngFor="let message of allMessages">
-                {{ message.post }}
-            </mat-card>
+            <div class="example-form">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Message</mat-label>
+                    <div class="chat-container2">
+                        <input matInput [(ngModel)]="message.post">
+                        <!--<mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint> -->
+                        <!--<mat-hint align="end">{{message.value.length}} / 256</mat-hint> -->
+                        <button mat-button (click)="send()" cdkFocusInitial>
+                            <mat-icon class="send">send</mat-icon>
+                        </button>
+                    </div>
+                </mat-form-field>
+            </div>
         </mat-card>
     </div>
-
-    <div class="example-form">
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Message</mat-label>
-            <div class="chat-container2">
-                <input matInput [(ngModel)]="message.post">
-                <!--<mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint> -->
-                <!--<mat-hint align="end">{{message.value.length}} / 256</mat-hint> -->
-                <button mat-button (click)="send()" cdkFocusInitial>
-                    <mat-icon class="send">send</mat-icon>
-                </button>
-            </div>
-        </mat-form-field>
-
-    </div>
 </div>
-
-
-<!--#message maxlength="256" placeholder="">-->

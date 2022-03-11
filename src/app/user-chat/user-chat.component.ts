@@ -14,7 +14,7 @@ import { NgModel } from '@angular/forms';
   styleUrls: ['./user-chat.component.scss']
 })
 export class UserChatComponent implements OnInit {
-  
+ 
   message = new Message();
   userId: any = '';
   user: User = new User();
