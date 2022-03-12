@@ -7,7 +7,8 @@ import { User } from 'models/users.class';
 import { Message } from 'models/message.class';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
-
+var today = new Date();
+var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 @Component({
   selector: 'app-user-chat',
   templateUrl: './user-chat.component.html',
@@ -22,13 +23,17 @@ export class UserChatComponent implements OnInit {
   allMessages: any = [];
   allUsers: any = [];
 
-
+  today = new Date();
+  time = today.getHours() + ":" + today.getMinutes();
 
   constructor(public firestore: AngularFirestore,
     private route: ActivatedRoute,
     public fireauth: AngularFireAuth,
     private router: Router) {
   }
+  
+  
+  
 
   ngOnInit(): void {
     this.firestore
@@ -60,9 +65,8 @@ export class UserChatComponent implements OnInit {
       .subscribe((user: any) => {
         this.user = new User(user);
       })
+      this.time;
   }
-
-
 
   send() {
     this.firestore
@@ -72,9 +76,7 @@ export class UserChatComponent implements OnInit {
         console.log(results);
         this.message.post = ' ';
       })
+    console.log(time);
   }
-
-
-
 }
 
