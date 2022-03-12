@@ -10,12 +10,13 @@ import { ThreadsComponent } from './threads/threads.component';
 import { UserChatComponent } from './user-chat/user-chat.component';
 
 import { VarifyEmailComponent } from './varify-email/varify-email.component';
+import { AuthGuard } from 'app/shared/auth.guard';
 
 const routes: Routes = [
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'navbar', component: NavbarComponent,
+  { path: 'navbar', component: NavbarComponent, //canActivate: [AuthGuard],
   children: [
     {
       path: 'chat/:id',

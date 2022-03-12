@@ -1,19 +1,31 @@
-export class User{
-    splice(channelId: any, arg1: number) {
-      throw new Error('Method not implemented.');
-    }
+export class User {
+    uid: string;
+    email: string;
     displayName: string;
-    
-    constructor(obj?: any){
-        this.displayName = obj ? obj.displayName: '';
-        
-    }
+    photoURL: string;
+    emailVerified: boolean;
 
-    //In JSON umwandeln
-    public toJSON(){
-        return{
-            displayName: this.displayName,
-            
-        }
+    constructor(obj?: any) {
+      this.uid = obj ? obj.uid: '';
+      this.email = obj ? obj.email: '';
+      this.displayName = obj ? obj.displayName: '';
+      this.photoURL = obj ? obj.photoURL: '';
+      this.emailVerified = obj ? obj.emailVerified: '';
+      
+
+
     }
+    //In JSON umwandeln
+    //public toJSON() {
+      //  return {
+        //    displayName: this.displayName,
+
+        //}
+    //}
+
+
+
+
+
+
 }

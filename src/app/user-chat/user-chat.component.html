@@ -3,7 +3,10 @@
         <mat-card>{{ user.displayName }}
 
             <mat-card class="post" *ngFor="let message of allMessages">
-                {{ message.post }}
+                <div class="post2">
+                    {{ user.displayName }} <br>
+                    {{ message.post }}
+                </div>
             </mat-card>
         </mat-card>
     </div>

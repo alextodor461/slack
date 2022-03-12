@@ -1,5 +1,5 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
@@ -55,8 +55,13 @@ export class NavbarComponent implements OnInit {
   channelId: any = '';
   userId: any = '';
   form: any;
+  
 
-  constructor(public dialog: MatDialog, private fireauth: AngularFireAuth, private router: Router, public firestore: AngularFirestore, public route: ActivatedRoute,) {
+  constructor(public dialog: MatDialog,
+    private fireauth: AngularFireAuth,
+    private router: Router,
+    public firestore: AngularFirestore,
+    private route: ActivatedRoute,) {
     this.dataSource.data = TREE_DATA;
   }
 
@@ -86,7 +91,7 @@ export class NavbarComponent implements OnInit {
     this.route.paramMap.subscribe(paramMap => {
       this.userId = paramMap.get('id');
       console.log('Got ID', this.userId);
-      this.getUser();
+      //this.getUser();
     })
   }
 
@@ -110,14 +115,14 @@ export class NavbarComponent implements OnInit {
       })
   }
 
-  getUser() {
-    this.firestore.collection('users')
-      .doc(this.userId)
-      .valueChanges()
-      .subscribe((user: any) => {
-        this.user = new User(user);
-      })
-  }
+  //getUser() {
+  //  this.firestore.collection('users')
+  //    .doc(this.user.uid)
+  //    .valueChanges()
+  //    .subscribe((user: any) => {
+  //      this.user = new User(user);
+  //    })
+ // }
 
   openDialog(): void {
     this.dialog.open(AddChannelComponent)
@@ -152,7 +157,7 @@ export class NavbarComponent implements OnInit {
   // sign out
   logout() {
     this.fireauth.signOut().then(() => {
-      localStorage.removeItem('token');
+      localStorage.removeItem('user');
       this.fireauth.signOut();
       this.router.navigate(['/login']);
     }, err => {

@@ -12,11 +12,12 @@ import { User } from 'models/users.class';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
+  displayName : string = '';
   email : string = '';
   password : string = '';
   user = new User();
   allUsers : any = [];
+  uid: string;
 
   constructor(private auth : AuthService, private firestore: AngularFirestore, private database: AngularFireDatabase) { }
 
@@ -35,23 +36,30 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.auth.register(this.email,this.password);
+    
+    this.auth.register(this.email,this.password, )
 
     this.email = '';
     this.password = '';
-    this.create();
+    this.displayName = '';
+   // this.create();
+  
   }
 
-  create() {
-    this.firestore
-    .collection('users')
-      .add(this.user.toJSON())
-      .then((results) => {
-        console.log(results);
+  //create() {
+  //  this.firestore
+  //  .collection('users')
+  //    .add(this.user.toJSON())
+  //    .then((results) => {
+  //      console.log(results);
         
-      })
-  }
+  //    })
+ // }
+
 
  
 }
+
+
+
 

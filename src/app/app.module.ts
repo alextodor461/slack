@@ -35,6 +35,7 @@ import { OnlineStatusModule } from 'ngx-online-status';
 import { ThreadsComponent } from './threads/threads.component';
 import { UserChatComponent } from './user-chat/user-chat.component';
 import { InputChatComponent } from './input-chat/input-chat.component';
+import { AuthService } from './shared/auth.service';
 
 
 @NgModule({
@@ -79,7 +80,7 @@ import { InputChatComponent } from './input-chat/input-chat.component';
     OnlineStatusModule
     
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

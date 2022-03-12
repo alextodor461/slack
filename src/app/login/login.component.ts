@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AuthService } from 'app/shared/auth.service';
 
 var particlesJS: any;
@@ -17,8 +18,9 @@ export class LoginComponent implements OnInit {
 
   email : string = '';
   password : string = '';
+  fireAuth: any;
 
-  constructor(private auth : AuthService) { }
+  constructor(private fireauth : AuthService, public afAuth: AngularFireAuth) { }
 
   ngOnInit(): void {
   };
@@ -35,10 +37,13 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.auth.login(this.email,this.password);
+    this.fireauth.login(this.email,this.password);
+   
     
     this.email = '';
     this.password = '';
 
   }
+
 }
+
