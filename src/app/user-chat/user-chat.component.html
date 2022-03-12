@@ -3,8 +3,11 @@
         <mat-card>Nachricht an {{ user.displayName }}
             <div class="messages-div">
                 <div class="post" *ngFor="let message of allMessages">
-                    <img src="assets/icons/user.png" alt="">
-                    {{ message.post }}
+                    <div>
+                        <img src="assets/icons/user.png" alt="">
+                        {{ message.post }}
+                    </div>  
+                    Send at: {{ time }}
                 </div>
             </div>
 
