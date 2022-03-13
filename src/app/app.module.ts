@@ -38,6 +38,7 @@ import { InputChatComponent } from './input-chat/input-chat.component';
 import { AuthService } from './shared/auth.service';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,7 +78,8 @@ import { AuthService } from './shared/auth.service';
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     MatCardModule,
-    OnlineStatusModule
+    OnlineStatusModule,
+    
     
   ],
   providers: [AuthService],

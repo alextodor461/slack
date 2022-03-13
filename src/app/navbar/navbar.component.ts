@@ -12,6 +12,8 @@ import { Channel } from 'models/channels.class';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { User } from 'models/users.class';
+import { OnlineStatusService, OnlineStatusType } from 'ngx-online-status';
+import { DatePipe } from '@angular/common';
 
 /**
  * Food data with nested structure.
@@ -48,6 +50,10 @@ interface ExampleFlatNode {
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  status: OnlineStatusType;
+  onlineStatusCheck: any = OnlineStatusType;
+  OnlineStatusType = OnlineStatusType;
+
   channel: Channel = new Channel();
   user: User = new User();
   allChannels: any = [];
@@ -57,12 +63,17 @@ export class NavbarComponent implements OnInit {
   form: any;
   
 
+
   constructor(public dialog: MatDialog,
     private fireauth: AngularFireAuth,
     private router: Router,
+    private onlineStatusService: OnlineStatusService,
     public firestore: AngularFirestore,
     private route: ActivatedRoute,) {
     this.dataSource.data = TREE_DATA;
+    this.onlineStatusService.status.subscribe((status: OnlineStatusType) => {
+      this.status = status;
+    });
   }
 
   ngOnInit(): void {
@@ -122,7 +133,7 @@ export class NavbarComponent implements OnInit {
   //    .subscribe((user: any) => {
   //      this.user = new User(user);
   //    })
- // }
+  // }
 
   openDialog(): void {
     this.dialog.open(AddChannelComponent)

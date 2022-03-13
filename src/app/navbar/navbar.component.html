@@ -44,19 +44,23 @@
 
 
 
-    <div class="user-cards" >
-      <mat-card *ngFor="let user of allUsers"  [routerLink]="['user-chat/' + user.customIdUser]">
+    <div class="user-cards">
+      <mat-card *ngFor="let user of allUsers" [routerLink]="['user-chat/' + user.customIdUser]">
         <div class="user-cards-2">
           <mat-icon class="account-circle">account_circle</mat-icon>
-          <div class="led-green"></div>
-          {{ user.displayName }}
+          <div class="status" [class.offline]="status === onlineStatusCheck.OFFLINE">
+            {{ OnlineStatusType.OFFLINE ? 'Offline' : 'Online' }}
+          </div>
+          
+          {{ user.displayName }}                   
         </div>
+
       </mat-card>
     </div>
   </mat-drawer>
 
 
-  
+
 
   <div class="example-sidenav-content">
     <mat-toolbar class="toolbar" color="primary">
@@ -67,11 +71,13 @@
           </button>
           <span>Slack</span>
         </div>
-        <button mat-button [matMenuTriggerFor]="menu"><mat-icon>account_circle</mat-icon></button>
-          <mat-menu class="menu" #menu="matMenu">
-            <img class="user-img" src="assets/icons/user.png" alt="">
-            <button class="log-out-btn" (click)="logout()" mat-menu-item>Log Out</button>
-          </mat-menu>
+        <button mat-button [matMenuTriggerFor]="menu">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu class="menu" #menu="matMenu">
+          <img class="user-img" src="assets/icons/user.png" alt="">
+          <button class="log-out-btn" (click)="logout()" mat-menu-item>Log Out</button>
+        </mat-menu>
       </mat-toolbar-row>
     </mat-toolbar>
 

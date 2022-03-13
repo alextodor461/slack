@@ -142,7 +142,7 @@
 
 }
 
-.led-green {
+.status {
     position: absolute;
     //margin: 20px auto;
     width: 8px;
@@ -151,3 +151,16 @@
     border-radius: 50%;
     box-shadow: #000 0 -1px 7px 1px, inset rgb(18, 175, 4) 0 -1px 9px, #7D0 0 2px 12px;
 }
+
+.status.offline {
+    background-color: grey;
+}
+//.status {
+ //   height: 48px;
+ //   background-color: #00c000;
+ //   text-align: center;
+ //   color: #fff;
+ //   line-height: 48px;
+ //   transition: background-color 1s ease;
+//}
+
