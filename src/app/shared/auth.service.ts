@@ -4,17 +4,15 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat
 import { Router } from '@angular/router';
 import { User } from 'models/users.class';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   userData: any;
-
+  
 
   constructor(public fireauth: AngularFireAuth, private router: Router,
-     public firestore: AngularFirestore, public ngZone: NgZone ) {
+    public firestore: AngularFirestore, public ngZone: NgZone) {
 
     this.fireauth.authState.subscribe((user) => {
       if (user) {
@@ -28,40 +26,25 @@ export class AuthService {
     });
   }
 
+  //login method
   login(email: string, password: string) {
-    return this.fireauth
-      .signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['navbar']);
-          this.SetUserData(result.user);
-        });
+    this.fireauth.signInWithEmailAndPassword(email, password).then(res => {
+      localStorage.setItem('token', 'true');
+    
+      if (res.user?.emailVerified == true) {
+        //this.SetUserData(res.user, );
+        this.router.navigate(['navbar']);
         
-      })
-      .catch((error) => {
-        window.alert(error.message);
-      });
+
+      } else {
+        this.router.navigate(['/varify-email']);
+      }
+
+    }, err => {
+      alert(err.message);
+      this.router.navigate(['/login']);
+    })
   }
-
-  // login method
-  //login(email: string, password: string) {
-    //this.fireauth.signInWithEmailAndPassword(email, password).then(res => {
-      //localStorage.setItem('token', 'true');
-      
-
-     // if (res.user?.emailVerified == true) {
-       // this.SetUserData(res.user);
-       // this.router.navigate(['navbar']);
-        
-      //} else {
-       // this.router.navigate(['/varify-email']);
-     // }
-
-    //}, err => {
-      //alert(err.message);
-      //this.router.navigate(['/login']);
-    //})
- // }
 
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user')!);
@@ -70,30 +53,33 @@ export class AuthService {
 
 
   // register method
-  register(email: string, password: string,): void {
+  register(email: string, password: string, displayName:string): void {
     this.fireauth
-    .createUserWithEmailAndPassword(email, password)
-    .then(res => {
-    alert('Registration Successful');
-      this.SetUserData(res.user);
-      this.sendEmailForVarification(res.user);
-      
-      this.router.navigate(['/login']);
-    }, err => {
-      alert(err.message);
-      this.router.navigate(['/register']);
-    })
+      .createUserWithEmailAndPassword(email, password)
+      .then(res => {
+        alert('Registration Successful');
+        
+        this.sendEmailForVarification(res.user);
+        this.SetUserData(res.user, displayName);
+        this.router.navigate(['/login']);
+        
+        
+        
+      }, err => {
+        alert(err.message);
+        this.router.navigate(['/register']);
+      })
   }
 
 
-  SetUserData(user: any) {
+  SetUserData(user: any, displayName: string ) {
     const userRef: AngularFirestoreDocument<any> = this.firestore.doc(
       `users/${user.uid}`
     );
     const userData: User = {
       uid: user.uid,
       email: user.email,
-      displayName: user.displayName,
+      displayName: displayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
       

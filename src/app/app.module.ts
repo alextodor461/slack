@@ -36,6 +36,7 @@ import { ThreadsComponent } from './threads/threads.component';
 import { UserChatComponent } from './user-chat/user-chat.component';
 import { InputChatComponent } from './input-chat/input-chat.component';
 import { AuthService } from './shared/auth.service';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -82,7 +83,7 @@ import { AuthService } from './shared/auth.service';
     
     
   ],
-  providers: [AuthService],
+  providers: [AuthService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

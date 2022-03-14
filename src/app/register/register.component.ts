@@ -36,25 +36,30 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
+    if(this.displayName == '') {
+      alert('Please enter a Password');
+      return;
+    }
+
     
-    this.auth.register(this.email,this.password, )
+    this.auth.register(this.email,this.password, this.displayName )
 
     this.email = '';
     this.password = '';
     this.displayName = '';
-   // this.create();
-  
+    //this.create();
+    console.log('Name is',this.displayName);
   }
 
   //create() {
-  //  this.firestore
-  //  .collection('users')
-  //    .add(this.user.toJSON())
-  //    .then((results) => {
-  //      console.log(results);
-        
-  //    })
- // }
+    //this.firestore
+    //.collection('users')
+    //  .add(this.user.toJSON())
+    //  .then((results) => {
+    //  console.log(results);
+      
+  //})
+ //}
 
 
  

@@ -5,6 +5,7 @@ export class User {
     photoURL: string;
     emailVerified: boolean;
 
+
     constructor(obj?: any) {
       this.uid = obj ? obj.uid: '';
       this.email = obj ? obj.email: '';
