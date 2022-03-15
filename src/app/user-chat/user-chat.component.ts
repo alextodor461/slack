@@ -22,7 +22,6 @@ export class UserChatComponent implements OnInit {
   allChannels: any = [];
   allMessages: any = [];
   allUsers: any = [];
-  minutes = new Date().getMinutes();
 
   constructor(public firestore: AngularFirestore,
     private route: ActivatedRoute,
@@ -63,7 +62,8 @@ export class UserChatComponent implements OnInit {
   }
 
   send() {
-    this.message.sentAt = new Date().getHours() + ":" + this.minutes;
+    var minutes = new Date().getMinutes();
+    this.message.sentAt = new Date().getHours() + ":" + minutes;
     this.firestore
       .collection('messages')
       .add(this.message.toJSON())
