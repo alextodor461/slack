@@ -6,25 +6,23 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'models/users.class';
 import { Message } from 'models/message.class';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { DATE_PIPE_DEFAULT_TIMEZONE, getLocaleTimeFormat } from '@angular/common';
 
-var today = new Date();
-var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+//var today = new Date();
+//var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 @Component({
   selector: 'app-user-chat',
   templateUrl: './user-chat.component.html',
   styleUrls: ['./user-chat.component.scss']
 })
 export class UserChatComponent implements OnInit {
-
   message = new Message();
   userId: any = '';
   user: User = new User();
   allChannels: any = [];
   allMessages: any = [];
   allUsers: any = [];
-
-  today = new Date();
-  time = today.getHours() + ":" + today.getMinutes();
+  minutes = new Date().getMinutes();
 
   constructor(public firestore: AngularFirestore,
     private route: ActivatedRoute,
@@ -32,9 +30,6 @@ export class UserChatComponent implements OnInit {
     private router: Router) {
   }
   
-  
-  
-
   ngOnInit(): void {
     this.firestore
       .collection('messages')
@@ -65,10 +60,10 @@ export class UserChatComponent implements OnInit {
       .subscribe((user: any) => {
         this.user = new User(user);
       })
-      this.time;
   }
 
   send() {
+    this.message.sentAt = new Date().getHours() + ":" + this.minutes;
     this.firestore
       .collection('messages')
       .add(this.message.toJSON())
@@ -76,7 +71,6 @@ export class UserChatComponent implements OnInit {
         console.log(results);
         this.message.post = ' ';
       })
-    console.log(time);
   }
 }
 
