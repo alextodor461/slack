@@ -41,7 +41,12 @@ const routes: Routes = [
     {
       path: 'chat/:id',
       component: ChatComponent
-    },]},
+    },
+    {
+      path: 'user-chat/:id',
+      component: UserChatComponent
+    },
+    ]},
   { path: 'register', component: RegisterComponent },
   { path: 'varify-email', component: VarifyEmailComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
