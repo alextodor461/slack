@@ -22,7 +22,7 @@ export class UserChatComponent implements OnInit {
   allChannels: any = [];
   allMessages: any = [];
   allUsers: any = [];
-
+  url: string = '';
   constructor(public firestore: AngularFirestore,
     private route: ActivatedRoute,
     public fireauth: AngularFireAuth,
@@ -52,6 +52,17 @@ export class UserChatComponent implements OnInit {
         this.allUsers = current;
       });
   }
+
+  selectFile(event: any){
+    if(event.target.files){
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (event: any) =>{
+        this.url = event.target.result;
+      }
+    }
+  }
+
   getUser() {
     this.firestore.collection('users')
       .doc(this.userId)

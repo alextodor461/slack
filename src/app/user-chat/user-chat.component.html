@@ -3,25 +3,31 @@
         <mat-card>Nachricht an {{ user.displayName }}
             <div class="messages-div">
                 <div class="post" *ngFor="let message of allMessages">
+                    <mat-icon class="mat-icon">bookmark_border</mat-icon>
                     <div>
-                        <img src="assets/icons/user.png" alt="">
-                        {{ user.displayName }}
-                        {{ message.post }}
-                    </div>
-                   <p>Send at: {{ message.sentAt }}</p> 
+                            <img src="assets/icons/user.png" alt="">
+                        <div class="message-and-name-div">
+                            <div>
+                                <span class="name"><b>{{ user.displayName }}</b></span>
+                                <span class="time">{{ message.sentAt }} Uhr</span>
+                            </div>
+                            
+                           <span>{{ message.post }}</span> 
+                        </div> 
+                    </div>  
                 </div>
             </div>
 
             <div class="example-form">
                 <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Message</mat-label>
-                    
+                    <img *ngIf="url" [src]="url" width="100px" height="100px" (change)="selectFile($event)">
                     <div class="chat-container2">
                         <div class="upload-files-div">
                             <button class="more-btn" mat-button [matMenuTriggerFor]="menu">
                                 <mat-icon>more_horiz</mat-icon>
                             </button>
-        
+       
                             <mat-menu #menu="matMenu">
                                 <button mat-menu-item cdkFocusInitial>
                                     <div class="file-upload mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
