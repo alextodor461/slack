@@ -15,7 +15,22 @@
             <div class="example-form">
                 <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Message</mat-label>
+                    
                     <div class="chat-container2">
+                        <div class="upload-files-div">
+                            <button class="more-btn" mat-button [matMenuTriggerFor]="menu">
+                                <mat-icon>more_horiz</mat-icon>
+                            </button>
+        
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item cdkFocusInitial>
+                                    <div class="file-upload mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                                        <span>Upload files from your computer</span>
+                                        <input type="file" name="FileAttachment" id="FileAttachment" class="upload" />
+                                    </div>
+                                </button>   
+                            </mat-menu>
+                        </div>
                         <input matInput [(ngModel)]="message.post">
                         <!--<mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint> -->
                         <!--<mat-hint align="end">{{message.value.length}} / 256</mat-hint> -->
