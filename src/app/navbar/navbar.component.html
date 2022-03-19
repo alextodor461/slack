@@ -3,6 +3,9 @@
     <button routerLink="threads" class="threads-btn">
       <mat-icon>chat</mat-icon>Threads
     </button>
+    <button routerLink="bookmark" class="threads-btn">
+      <mat-icon>bookmark_border</mat-icon>Bookmark
+    </button>
     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="tree">
       <mat-tree-node class="channel-tree" *matTreeNodeDef="let node" matTreeNodeToggle>
         <div [routerLink]="['chat/' + channel.customIdName]" class="channel-div"
@@ -12,7 +15,7 @@
           </div>
           <div>
             <button class="more-btn" mat-button [matMenuTriggerFor]="menu"
-              [routerLink]="['channel/' + channel.customIdName]">
+              [routerLink]="['/channel/' + channel.customIdName]">
               <mat-icon>more_horiz</mat-icon>
             </button>
           </div>

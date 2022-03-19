@@ -9,6 +9,7 @@ import { ThreadsComponent } from './threads/threads.component';
 import { UserChatComponent } from './user-chat/user-chat.component';
 import { VarifyEmailComponent } from './varify-email/varify-email.component';
 
+import { BookmarkComponent } from './bookmark/bookmark.component';
 
 const routes: Routes = [
 
@@ -30,6 +31,10 @@ const routes: Routes = [
         path: 'threads',
         component: ThreadsComponent
     },
+    {
+      path: 'bookmark',
+      component: BookmarkComponent
+    }
     ]},
   { path: 'user/:id', component: NavbarComponent },
   { path: 'channel/:id', component: NavbarComponent,
@@ -41,12 +46,16 @@ const routes: Routes = [
     {
       path: 'chat/:id',
       component: ChatComponent
-    },]},
-
-
+    },
+    {
+      path: 'user-chat/:id',
+      component: UserChatComponent
+    },
+    ]},
   { path: 'register', component: RegisterComponent },
   { path: 'varify-email', component: VarifyEmailComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'bookmark', component: BookmarkComponent },
 
 ];
 

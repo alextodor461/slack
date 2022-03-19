@@ -238,13 +238,27 @@
         flex: 1;
         margin-top: 50px;
         margin-bottom: 50px;
-        overflow: scroll;
+        overflow-y: scroll;
 
         .post {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 0px;
+            padding: 20px 0px;
+            cursor: pointer;
+            position: relative;
+
+            &:hover{
+                background-color: rgb(56, 56, 56);
+            }
+
+            &:hover .mat-icon{
+                visibility:visible;
+            }
+
+            p{
+                margin-right: 20px;
+            }
 
             div{
                 display: flex;
@@ -255,6 +269,28 @@
                 border-radius: 100%;
                 width: 40px;
                 margin-right: 10px;
+            }
+
+            .mat-icon{
+                position: absolute;
+                top: 0;
+                right: 0;
+                visibility: hidden;
+            }
+
+            .message-and-name-div{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .time{
+                margin-left: 10px;
+                font-size: 12.5px;
+            }
+
+            .name{
+                font-size: 16px;
             }
         }
     }
@@ -295,11 +331,6 @@
 
   .post {
      max-height: 20px;
-     
-  }
-
-  .post2 {
-    
   }
 .example-full-width {
     width: 100%;   

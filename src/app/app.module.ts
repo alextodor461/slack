@@ -39,6 +39,7 @@ import { UserChatComponent } from './user-chat/user-chat.component';
 import { InputChatComponent } from './input-chat/input-chat.component';
 import { AuthService } from './shared/auth.service';
 import { DatePipe } from '@angular/common';
+import { BookmarkComponent } from './bookmark/bookmark.component';
 
 
 
@@ -63,6 +64,8 @@ import { DatePipe } from '@angular/common';
     InputChatComponent,
 
 
+    BookmarkComponent,
+   
   ],
 
   imports: [

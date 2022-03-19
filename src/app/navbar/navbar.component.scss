@@ -66,7 +66,8 @@
     display: flex;
     flex-direction: column;
     cursor: pointer;
-
+    height: 30vh;
+    overflow-y: scroll;
     &:hover{
         background-color: rgb(78, 78, 78);
     }

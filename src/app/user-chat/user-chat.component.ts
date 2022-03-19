@@ -10,16 +10,16 @@ import { CloudstorageService } from 'app/shared/cloudstorage.service';
 import { MessageService } from 'app/shared/message.service';
 import { UserProgressService } from 'app/shared/user-progress.service';
 import { Location } from '@angular/common';
+import { DATE_PIPE_DEFAULT_TIMEZONE, getLocaleTimeFormat } from '@angular/common';
 
 var today = new Date();
-var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+//var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 @Component({
   selector: 'app-user-chat',
   templateUrl: './user-chat.component.html',
   styleUrls: ['./user-chat.component.scss']
 })
 export class UserChatComponent implements OnInit {
-
   message = new Message();
   threadIndex: number | undefined;
   currentlocation: any;
@@ -45,6 +45,7 @@ export class UserChatComponent implements OnInit {
   //@ViewChild('scrollEnd');
   
 
+  url: string = '';
   constructor(public firestore: AngularFirestore,
     private route: ActivatedRoute,
     public cloudstorageService: CloudstorageService,
@@ -57,9 +58,6 @@ export class UserChatComponent implements OnInit {
       this.formatText = false;
   }
   
-  
-  
-
   ngOnInit(): void {
 
     this.currentlocation = this.messageService.loadCurrentChatroom();
