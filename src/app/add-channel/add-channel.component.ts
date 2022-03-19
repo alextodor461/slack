@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MessageService } from 'app/shared/message.service';
 import { Channel } from 'models/channels.class';
 
 @Component({
@@ -9,9 +10,13 @@ import { Channel } from 'models/channels.class';
   styleUrls: ['./add-channel.component.scss']
 })
 export class AddChannelComponent implements OnInit {
-  channel = new Channel();
-  allChannels: any = [];
-  constructor(public dialogRef: MatDialogRef<AddChannelComponent>, private firestore: AngularFirestore) { }
+  channelName: any;
+  //channel = new Channel();
+  //allChannels: any = [];
+  constructor(
+    public dialogRef: MatDialogRef<AddChannelComponent>,
+     private firestore: AngularFirestore,
+     public messageService: MessageService) { }
 
   ngOnInit(): void {
 
@@ -19,13 +24,18 @@ export class AddChannelComponent implements OnInit {
   }
 
   save() {
-    this.firestore
-      .collection('channels')
-      .add(this.channel.toJSON())
-      .then((results) => {
-        console.log(results);
-        this.dialogRef.close();
-      })
+    this.messageService.createNewChannel(this.channelName);
+    this.dialogRef.close();
   }
+
+  //save() {
+  //  this.firestore
+  //    .collection('channels')
+  //    .add(this.channel.toJSON())
+  //    .then((results) => {
+  //      console.log(results);
+  //      
+  //    })
+  //}
 }
 

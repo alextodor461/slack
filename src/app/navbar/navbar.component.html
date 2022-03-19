@@ -6,16 +6,21 @@
     <button routerLink="bookmark" class="threads-btn">
       <mat-icon>bookmark_border</mat-icon>Bookmark
     </button>
+
+    <!--  [routerLink]="['chat/' + channel.customIdName]" -->
+
+
     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="tree">
       <mat-tree-node class="channel-tree" *matTreeNodeDef="let node" matTreeNodeToggle>
-        <div [routerLink]="['chat/' + channel.customIdName]" class="channel-div"
-          *ngFor="let channel of allChannels, let i = index">
-          <div class="channel-name">#
-            {{ channel.channelName }}
+        <div (click)="goToChannel(channel)" class="channel-div"
+          *ngFor="let channel of this.messageService.allChannels , let i = index">
+          <div  class="channel-name">
+            # {{ channel.name }}
           </div>
+
+
           <div>
-            <button class="more-btn" mat-button [matMenuTriggerFor]="menu"
-              [routerLink]="['/channel/' + channel.customIdName]">
+            <button class="more-btn" mat-button [matMenuTriggerFor]="menu" >
               <mat-icon>more_horiz</mat-icon>
             </button>
           </div>
@@ -47,7 +52,7 @@
 
 
 
-    <!--<div class="user-cards"> -->
+
     <div class="user-list">
       <mat-list>
         <mat-list-item *ngFor="let user of userService.allUser" (click)="message(user);
@@ -64,24 +69,8 @@
         </mat-list-item>
       </mat-list>
     </div>
-    <!--</div> -->
+
   </mat-drawer>
-
-  <!--[routerLink]="['user-chat/' + user.customIdUser]"
-   <div class="user-cards-2">
-          <mat-icon class="account-circle">account_circle</mat-icon>
-          <div class="status" [class.offline]="status === onlineStatusCheck.OFFLINE">
-            {{ OnlineStatusType.OFFLINE ? 'Offline' : 'Online' }}
-          </div>
-
-          {{ user.displayName }}
-        </div>
-
-
-        sidenavService.close()
--->
-
-
 
   <div class="example-sidenav-content">
     <mat-toolbar class="toolbar" color="primary">
@@ -97,8 +86,7 @@
         </button>
         <mat-menu class="menu" #menu="matMenu">
           <div class="info">
-            <img class="user-img" src="{{ userService.user.photoURL }}"
-             (click)="changePicture()">
+            <img class="user-img" src="{{ userService.user.photoURL }}" (click)="changePicture()">
             <div class="name">
               <h4>{{ userService.user.displayName }}</h4>
             </div>

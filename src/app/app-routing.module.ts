@@ -37,7 +37,7 @@ const routes: Routes = [
     }
     ]},
   { path: 'user/:id', component: NavbarComponent },
-  { path: 'channel/:id', component: NavbarComponent,
+  { path: 'channel/:id', component: UserChatComponent,
    children: [
     {
         path: 'threads',

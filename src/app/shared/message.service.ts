@@ -8,13 +8,13 @@ import { UserProgressService } from './user-progress.service';
 })
 export class MessageService {
   message: Message | any;
-  currentMessageId: string | undefined;
   allChannels: any;
   loadMessage : boolean = false;
+  currentMessageId: string | undefined;
+  
 
   constructor(
     public userService: UserProgressService,
-    
     public angularfire: AngularFirestore,
     public firestore: AngularFirestore
   ) { }
@@ -35,11 +35,11 @@ export class MessageService {
     });
   }
 
-  loadCurrentMessage(paramsID: string, messages: string) {
+  loadCurrentMessage(paramsID: string, location: string) {
     this.currentMessageId = paramsID;
     this.message = new Message();
     this.firestore
-      .collection(messages)
+      .collection(location)
       .doc(paramsID)
       .valueChanges()
       .subscribe((message: any) => {
@@ -51,14 +51,14 @@ export class MessageService {
       });
   }
 
-  saveCurrentMessage(messages: string) {
-    localStorage.setItem('room', messages);
+  saveCurrentMessage(location: string) {
+    localStorage.setItem('room', location);
   }
 
   
   loadCurrentChatroom() {
-    let room = localStorage.getItem('room');
-    return room;
+    let location = localStorage.getItem('room');
+    return location;
   }
 
   deleteCurrentChatroom() {
@@ -66,11 +66,11 @@ export class MessageService {
   }
 
 
-  updateCurrentMessage(messages: string) {
+  updateCurrentMessage(location: string) {
     this.firestore
-      .collection(messages)
+      .collection(location)
       .doc(this.currentMessageId)
-      .update(this.message.toJson());
+      .update(this.message.toJSON());
   }
 
   createNewChannel(channelName: string) {
