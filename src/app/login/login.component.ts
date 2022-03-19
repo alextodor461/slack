@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AuthService } from 'app/shared/auth.service';
 
+
 var particlesJS: any;
 
 @Component({
@@ -16,34 +17,31 @@ export class LoginComponent implements OnInit {
     width: number = 100;
     height: number = 100;
 
-  email : string = '';
-  password : string = '';
-  fireAuth: any;
-
-  constructor(private fireauth : AuthService, public afAuth: AngularFireAuth) { }
+  constructor(public authService : AuthService,
+     public fireauth: AngularFireAuth) { }
 
   ngOnInit(): void {
   };
 
-  login() {
+  //login() {
 
-    if(this.email == '') {
-      alert('Please enter email');
-      return;
-    }
+    //if(this.email == '') {
+    //  alert('Please enter email');
+    //  return;
+    //}
 
-    if(this.password == '') {
-      alert('Please enter password');
-      return;
-    }
+    //if(this.password == '') {
+    //  alert('Please enter password');
+    //  return;
+    //}
 
-    this.fireauth.login(this.email,this.password);
+    //this.fireauth.login(this.email,this.password);
    
     
-    this.email = '';
-    this.password = '';
+    //this.email = '';
+    //this.password = '';
 
-  }
+  //}
 
 }
 

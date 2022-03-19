@@ -8,36 +8,47 @@
     </mat-toolbar>
 
     <div class="form-container">
-        <form class="login-field">
+
+        <form (ngSubmit)="authService.register(email.value, password.value, name.value)" class="login-field">
+
             <div class="login-div">
                 <h2>- Register -</h2>
 
                 <div class="input-fields">
+
                     <div class="mb-3">
                         <mat-icon class="icon">email</mat-icon>
                         <label for="exampleInputEmail1" class="form-label mobile-hide">Email</label>
-                        <input placeholder="Enter your Email" type="email" class="form-control" name="email"
-                            [(ngModel)]="email">
+
+                        <input class="form-control" [formControl]="authService.email" required #email matInput
+                            placeholder="Enter your Email" />
                     </div>
+
                     <div class="mb-3">
                         <mat-icon class="icon">lock</mat-icon>
                         <label for="exampleInputPassword1" class="form-label mobile-hide">Password</label>
-                        <input placeholder="Enter your Password" type="password" class="form-control" name="password"
-                            [(ngModel)]="password">
+
+                        <input class="form-control" [formControl]="authService.password" required matInput #password
+                            placeholder="Enter your Password" />
                     </div>
+
                     <div class="mb-3">
                         <mat-icon class="icon">account_circle</mat-icon>
                         <label for="exampleInputPassword1" class="form-label mobile-hide">Name</label>
-                        <input placeholder="Enter your Slack Name"  class="form-control" name="password"
-                            [(ngModel)]="displayName">
+
+                        <input class="form-control" [formControl]="authService.userdisplayName" required matInput #name
+                            placeholder="Enter your Slack Name" />
                     </div>
 
                     <div class="a-tags">
                         <a href="/login" style="text-decoration: none;">Have an account ? <span
                                 class="text-danger">Login</span></a>
                     </div>
+
                 </div>
-                <button class="login-button" mat-raised-button color="primary" (click)="register()">Register</button>
+
+                <button class="login-button" mat-raised-button color="primary">Register</button>
+                
             </div>
 
             <div class="company-div">

@@ -44,21 +44,39 @@
 
 
 
-    <div class="user-cards">
-      <mat-card *ngFor="let user of allUsers" [routerLink]="['user-chat/' + user.customIdUser]">
-        <div class="user-cards-2">
+    <!--<div class="user-cards"> -->
+      <div class="user-list">
+        <mat-list >
+          <mat-list-item *ngFor="let user of userService.allUser" (click)="message(user);
+          navbarService.close()" class="user-item">
+
+            <div class="user-status">
+              <div class="userOnline" [ngStyle]="{
+              'background-color': user.online ? 'green' : 'red'
+            }"></div>
+              <img src="{{ user.photoURL }}" />
+            </div>
+            {{ user.displayName }}
+
+          </mat-list-item>
+        </mat-list>
+      </div>
+    <!--</div> -->
+  </mat-drawer>
+
+  <!--[routerLink]="['user-chat/' + user.customIdUser]"
+   <div class="user-cards-2">
           <mat-icon class="account-circle">account_circle</mat-icon>
           <div class="status" [class.offline]="status === onlineStatusCheck.OFFLINE">
             {{ OnlineStatusType.OFFLINE ? 'Offline' : 'Online' }}
           </div>
-          
-          {{ user.displayName }}                   
+
+          {{ user.displayName }}
         </div>
 
-      </mat-card>
-    </div>
-  </mat-drawer>
 
+        sidenavService.close()
+-->
 
 
 

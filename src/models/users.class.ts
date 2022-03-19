@@ -1,32 +1,36 @@
 export class User {
-    uid: string;
-    email: string;
-    displayName: string;
-    photoURL: string;
-    emailVerified: boolean;
+  public uid: BigInteger | undefined;
+  public email: string | undefined;
+  public displayName: string | any;
+  public photoURL: string | undefined;
+  public emailVerified: boolean | undefined;
+  public online: boolean | undefined;
+  public status: string | undefined;
+  public privatChat: any = [];
+  
+  constructor(){}
+
+  //constructor(obj?: any) {
+  //  this.uid = obj ? obj.uid : '';
+  //  this.email = obj ? obj.email : '';
+  //  this.displayName = obj ? obj.displayName : '';
+  //  this.photoURL = obj ? obj.photoURL : '';
+  //  this.emailVerified = obj ? obj.emailVerified : '';
+//}
 
 
-    constructor(obj?: any) {
-      this.uid = obj ? obj.uid: '';
-      this.email = obj ? obj.email: '';
-      this.displayName = obj ? obj.displayName: '';
-      this.photoURL = obj ? obj.photoURL: '';
-      this.emailVerified = obj ? obj.emailVerified: '';
-      
-
-
-    }
-    //In JSON umwandeln
-    //public toJSON() {
-      //  return {
-        //    displayName: this.displayName,
-
-        //}
-    //}
-
-
-
-
-
+  //In JSON umwandeln
+  public toJson() {
+    return {
+      uid: this.uid,
+      email: this.email,
+      displayName: this.displayName,
+      photoURL: this.photoURL,
+      emailVerified: this.emailVerified,
+      online: this.online,
+      status: this.status,
+      privatChat: this.privatChat,
+    };
+  }
 
 }

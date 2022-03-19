@@ -1,43 +1,50 @@
-    <mat-drawer-container class="login-background" autosize>
+<mat-drawer-container class="login-background" autosize>
 
-        <mat-toolbar class="toolbar" >
-            <mat-toolbar-row>
-                <img class="logo" src="assets/icons/LogoMakr-86Inc5.png" alt="">
-                <span>Slack</span>
-            </mat-toolbar-row>
-        </mat-toolbar>
-      
-        <div class="form-container">
-            <form class="login-field">
-                <div class="company-div">
-                    <div class="company-div-2 mobile-hide">
-                        <h2>Slack</h2>
-                        <img class="img-register" src="assets\icons\LogoMakr-86Inc5.png">
+    <mat-toolbar class="toolbar">
+        <mat-toolbar-row>
+            <img class="logo" src="assets/icons/LogoMakr-86Inc5.png" alt="">
+            <span>Slack</span>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div class="form-container">
+
+        <form (ngSubmit)="authService.login(email.value, password.value)" class="login-field">
+
+            <div class="company-div">
+                <div class="company-div-2 mobile-hide">
+                    <h2>Slack</h2>
+                    <img class="img-register" src="assets\icons\LogoMakr-86Inc5.png">
+                </div>
+            </div>
+
+            <div class="login-div">
+                <h2>- Sign in -</h2>
+
+                <div class="input-fields">
+                    <div class="mb-3">
+                        <mat-icon class="mobile-mb10">email</mat-icon>
+                        <label for="exampleInputEmail1" class="form-label mobile-hide">Email</label>
+
+                        <input class="form-control" [formControl]="authService.email" placeholder="Enter your Email"
+                            required #email matInput>
+                    </div>
+
+                    <div class="mb-3">
+                        <mat-icon class="mobile-mb10">lock</mat-icon>
+                        <label for="exampleInputPassword1" class="form-label mobile-hide">Password</label>
+                        <input class="form-control" [formControl]="authService.password" type="password" placeholder="Enter your Password" 
+                           required #password matInput>
+                    </div>
+
+                    <div class="a-tags">
+                        <a href="/register" style="text-decoration: none;">Register</a>
+                        <a href="/forgot-password" class="text-dark" style="text-decoration: none;">Forgot Password ?
+                        </a>
                     </div>
                 </div>
-
-                <div class="login-div">
-                    <h2>- Sign in -</h2>   
-
-                    <div class="input-fields">
-                        <div class="mb-3">
-                            <mat-icon class="mobile-mb10">email</mat-icon>
-                            <label for="exampleInputEmail1" class="form-label mobile-hide">Email</label>
-                            <input placeholder="Enter your Email" type="email" class="form-control" name="email" [(ngModel)]="email">
-                        </div>
-                        <div class="mb-3">
-                            <mat-icon class="mobile-mb10">lock</mat-icon>
-                            <label for="exampleInputPassword1" class="form-label mobile-hide">Password</label>
-                            <input placeholder="Enter your Password" type="password" class="form-control" name="password" [(ngModel)]="password">
-                        </div>
-    
-                        <div class="a-tags">                       
-                            <a href="/register" style="text-decoration: none;">Register</a>                 
-                            <a href="/forgot-password" class="text-dark" style="text-decoration: none;">Forgot Password ? </a>                   
-                        </div>       
-                    </div>
-                    <button class="login-button" mat-raised-button color="primary" (click)="login()">Login</button>
-                </div>       
-            </form>
-        </div>
-    </mat-drawer-container>
+                <button class="login-button" mat-raised-button color="primary" >Login</button>
+            </div>
+        </form>
+    </div>
+</mat-drawer-container>

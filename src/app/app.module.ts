@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -15,7 +16,7 @@ import { AddChannelComponent } from './add-channel/add-channel.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { RegisterComponent } from './register/register.component';
@@ -31,12 +32,17 @@ import { ChatComponent } from './chat/chat.component';
 
 import { EditChannelComponent } from './edit-channel/edit-channel.component';
 import { MatCardModule } from '@angular/material/card';
+
 import { OnlineStatusModule } from 'ngx-online-status';
 import { ThreadsComponent } from './threads/threads.component';
 import { UserChatComponent } from './user-chat/user-chat.component';
 import { InputChatComponent } from './input-chat/input-chat.component';
 import { AuthService } from './shared/auth.service';
 import { DatePipe } from '@angular/common';
+
+
+
+
 
 
 
@@ -55,7 +61,8 @@ import { DatePipe } from '@angular/common';
     ThreadsComponent,
     UserChatComponent,
     InputChatComponent,
-   
+
+
   ],
 
   imports: [
@@ -65,23 +72,26 @@ import { DatePipe } from '@angular/common';
     MatIconModule,
     MatSidenavModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.config),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireModule,
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
     FlexLayoutModule,
     MatTreeModule,
+
     MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
     MatMenuModule,
-    AngularFireModule,
-    AngularFireAuthModule,
-    AngularFirestoreModule,
-    AngularFireDatabaseModule,
     MatCardModule,
     OnlineStatusModule,
+    ReactiveFormsModule,
+    MatListModule,
     
-    
+
   ],
   providers: [AuthService, DatePipe],
   bootstrap: [AppComponent]

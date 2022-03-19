@@ -142,19 +142,35 @@
 
 }
 
-.status {
-    position: absolute;
-    //margin: 20px auto;
-    width: 8px;
-    height: 8px;
-    background-color: rgb(85, 255, 6);
-    border-radius: 50%;
-    box-shadow: #000 0 -1px 7px 1px, inset rgb(18, 175, 4) 0 -1px 9px, #7D0 0 2px 12px;
+.user-status {
+    display: flex;
+    position: relative;
+  
+    div {
+      position: absolute;
+      right: 4px;
+      bottom: 0;
+    }
+  }
+
+  .ai-center {
+    display: flex;
+    align-items: center;
 }
 
-.status.offline {
-    background-color: grey;
-}
+//.status {
+//    position: absolute;
+//    //margin: 20px auto;
+//    width: 8px;
+//    height: 8px;
+//    background-color: rgb(85, 255, 6);
+//    border-radius: 50%;
+//    box-shadow: #000 0 -1px 7px 1px, inset rgb(18, 175, 4) 0 -1px 9px, #7D0 0 2px 12px;
+//}
+
+//.offline {
+//    background-color: grey;
+//}
 //.status {
  //   height: 48px;
  //   background-color: #00c000;
@@ -164,7 +180,35 @@
  //   transition: background-color 1s ease;
 //}
 
-.ai-center {
+
+
+.user-list {
     display: flex;
-    align-items: center;
-}
+    justify-content: start;
+    align-items: start;
+    margin-top: 150px;
+    padding-left: 10px;
+  
+    img {
+      margin-right: 8px;
+      height: 28px;
+      width: 28px;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+  
+    mat-list-item {
+      margin-top: 16px;
+    }
+  }
+
+  .user-item {
+    margin-right: 20px;
+    color: lightgrey;
+    cursor: pointer;
+  }
+
+  .user-item:hover {
+    color: white;
+  }
+  

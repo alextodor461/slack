@@ -1,3 +1,158 @@
+<div *ngIf="messageService.message && this.messageService.loadMessage" class="message-container">
+    <div *ngIf="this.currentlocation == 'channels'" class="message-title">
+        <!--
+    <span
+      
+    (click)="goBack()"
+      *ngIf="isThreadRoute()"
+      class="material-icons backIcon"
+    >
+      undo
+    </span>
+    -->
+        <h3 *ngIf="isThreadRoute()"><b> Thread </b></h3>
+        <h3># {{ this.messageService.message.name }}</h3>
+        <!--
+    <span
+      (click)="openDialogChannelSettings()"
+      *ngIf="!isThreadRoute()"
+      class="material-icons backIcon"
+    >
+      keyboard_arrow_down
+    </span>
+    -->
+    </div>
+
+    <div *ngIf="this.currentlocation == 'chats' && this.privateMessage" class="message-title">
+        <!--
+    <span
+      (click)="goBack()"
+      *ngIf="isThreadRoute()"
+      class="material-icons backIcon"
+    >
+      undo
+    </span>
+-->
+        <div class="privateChatDescription">
+            <img src="{{ this.privateMessage.photoURL }}" />
+            <h3 *ngIf="isThreadRoute()"><b> Thread </b></h3>
+            <h3>
+                {{ this.privateMessage.displayName }}
+            </h3>
+        </div>
+    </div>
+
+    <div *ngIf="!isThreadRoute()" class="message-show-container">
+        <div [ngStyle]="{
+        'margin-bottom':
+          cloudstorageService.imageURL.length > 0 ? '64px' : '24px'
+      }" #scrollEnd class="scroll-container">
+            <div #messages *ngFor="let message of this.messageService.message.text; let i = index"
+                class="message-user-container" (mouseenter)="onHoverThread(i)" (mouseleave)="onHoverThread(-1)">
+                <span (click)="navigateToThread(i)" *ngIf="i == hoverIndexThreadIcon" class="material-icons">
+                    comment
+                </span>
+
+                <div class="message-userData">
+                    <img [matMenuTriggerFor]="showUserData" src="{{ returnUserData(message.userID).photoURL }}" />
+                    <mat-menu #showUserData="matMenu">
+                        <div class="show-user">
+                            <img src="{{ returnUserData(message.userID).photoURL }}" />
+                            <div>
+                                <h3>{{ returnUserData(message.userID).displayName }}</h3>
+                                <div class="userOnline" [ngStyle]="{
+                    'background-color': this.returnUserData(message.userID).online
+                      ? 'green'
+                      : 'red'
+                  }"></div>
+                            </div>
+                            <h4>
+                                Status: <i>{{ this.returnUserData(message.userID).status }} </i>
+                            </h4>
+                            <h4>
+                                Email: <b>{{ this.returnUserData(message.userID).email }} </b>
+                            </h4>
+                        </div>
+                    </mat-menu>
+
+                    <h4>{{ this.returnUserData(message.userID).displayName }}</h4>
+                    <p>{{ message.time }} Uhr</p>
+                </div>
+                <p class="word-break" [ngClass]="message.codeFormat ? 'codeFormat' : ''">
+                    {{ message.message }}
+                </p>
+                <div class="chat-image">
+                    <div *ngFor="let img of message.images">
+                        <!--
+            <img (click)="openImageDialog(img)" src="{{ img.src }}" />
+            -->
+                    </div>
+                </div>
+
+                <div class="chat-answer-container">
+                    <p (click)="navigateToThread(i)" *ngIf="message.answer.length == 1">
+                        {{ message.answer.length }} Antwort
+                    </p>
+                    <p (click)="navigateToThread(i)" *ngIf="message.answer.length > 1">
+                        {{ message.answer.length }} Antworten
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="isThreadRoute()" class="message-show-container">
+        <router-outlet *ngIf="this.messageService.message.text.length > 0"></router-outlet>
+    </div>
+
+    <p>
+        <mat-form-field class="message-field" appearance="outline">
+            <mat-label>Nachricht senden</mat-label>
+
+            <textarea (keydown)="keyDownFunction($event)" #inputText type="text" [(ngModel)]="text"
+                (ngModelChange)="changeText($event)" matInput placeholder="Nachricht senden"
+                [ngClass]="formatText ? 'codeFormat' : ''" style="max-width: 80%">
+      </textarea>
+
+            <div *ngIf="cloudstorageService.imageURL" class="imagePreview">
+                <div (mouseenter)="onHoverChatImage(i)" (mouseleave)="onHoverChatImage(-1)"
+                    *ngFor="let img of cloudstorageService.imageURL; let i = index">
+                    <img [src]="img.src" />
+                    <!--
+          <mat-spinner [diameter]="24" *ngIf="!img.uploaded"></mat-spinner>
+          -->
+                    <span (click)="cloudstorageService.deletePickedImg(img)"
+                        *ngIf="i == hoverIndexChatImageIcon && img.uploaded" class="material-icons">
+                        clear
+                    </span>
+                </div>
+            </div>
+
+            <div class="input-icons-container">
+                <label>
+                    <span type="file" class="material-icons"> add_a_photo </span>
+                    <input type="file" (change)="
+              cloudstorageService.handleFileInput($event, 'chat');
+              cloudstorageService.uploadImg('chat')
+            " style="display: none" />
+                </label>
+
+                <mat-icon matSuffix><span [ngClass]="
+              (this.text && this.cloudstorageService.imageURL.length <= 0) ||
+              checkUploadAllImages()
+                ? ''
+                : 'disabledIcon'
+            " (click)="send()" class="material-icons-outlined">
+                        send
+                    </span></mat-icon>
+            </div>
+        </mat-form-field>
+    </p>
+</div>
+
+
+
+<!--
 <div class="chat-container">
     <div class="mat-card-div">
         <mat-card>Nachricht an {{ user.displayName }}
@@ -17,8 +172,7 @@
                     <mat-label>Message</mat-label>
                     <div class="chat-container2">
                         <input matInput [(ngModel)]="message.post">
-                        <!--<mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint> -->
-                        <!--<mat-hint align="end">{{message.value.length}} / 256</mat-hint> -->
+                   
                         <button mat-button (click)="send()" cdkFocusInitial>
                             <mat-icon class="send">send</mat-icon>
                         </button>
@@ -28,3 +182,5 @@
         </mat-card>
     </div>
 </div>
+
+-->

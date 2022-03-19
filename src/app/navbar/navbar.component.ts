@@ -14,6 +14,10 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { User } from 'models/users.class';
 import { OnlineStatusService, OnlineStatusType } from 'ngx-online-status';
 import { DatePipe } from '@angular/common';
+import { UserProgressService } from 'app/shared/user-progress.service';
+import { MessageService } from 'app/shared/message.service';
+import { NavbarService } from 'app/shared/navbar.service';
+import { MatSidenav } from '@angular/material/sidenav';
 
 /**
  * Food data with nested structure.
@@ -50,10 +54,11 @@ interface ExampleFlatNode {
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  @ViewChild('navbar', { static: false }) public navbar: MatSidenav | any;
   status: OnlineStatusType;
   onlineStatusCheck: any = OnlineStatusType;
   OnlineStatusType = OnlineStatusType;
-
+  readTo: boolean;
   channel: Channel = new Channel();
   user: User = new User();
   allChannels: any = [];
@@ -61,22 +66,34 @@ export class NavbarComponent implements OnInit {
   channelId: any = '';
   userId: any = '';
   form: any;
-  
+
 
 
   constructor(public dialog: MatDialog,
-    private fireauth: AngularFireAuth,
-    private router: Router,
-    private onlineStatusService: OnlineStatusService,
+    public userService: UserProgressService,
+    public fireauth: AngularFireAuth,
+    public router: Router,
+    public messageService: MessageService,
+    public onlineStatusService: OnlineStatusService,
+    public navbarService: NavbarService,
     public firestore: AngularFirestore,
-    private route: ActivatedRoute,) {
+    public route: ActivatedRoute,) {
     this.dataSource.data = TREE_DATA;
-    this.onlineStatusService.status.subscribe((status: OnlineStatusType) => {
-      this.status = status;
-    });
+    this.readTo = false;
+      
+    ;
   }
+  async ngOnInit(): Promise<any> {
+    await this.userService.loadAllUserData();
+    await this.messageService.loadAllChannels();
 
-  ngOnInit(): void {
+    await this.route.params.subscribe((params) => {
+      console.log(params['id']);
+      this.userService.loadUserData(params['id']);
+    });
+  
+
+  //ngOnInit(): void {
     this.firestore
       .collection('channels')
       .valueChanges({ idField: 'customIdName' })
@@ -201,4 +218,75 @@ export class NavbarComponent implements OnInit {
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+  message(user: any) {
+    let curUserId = this.userService.user.uid;
+    var indexOfuserUid = user.privatChat.findIndex(function (
+      item: any,
+      i: any
+    ) {
+      return item.userUid === curUserId;
+    });
+
+    if (indexOfuserUid >= 0) {
+      this.navigateToChat(user.privatChat[indexOfuserUid].messageid);
+    } else {
+      this.addMessage(user);
+    }
+  }
+
+
+
+addMessage(user: any) {
+  let pickedUser = {
+    displayName: user.displayName,
+    userUid: user.uid,
+    messageid: this.userService.user.uid + user.uid,
+  };
+  let currentUser = {
+    displayName: this.userService.user.displayName,
+    userUid: this.userService.user.uid,
+    messageid: this.userService.user.uid + user.uid,
+  };
+  this.privatMessage(pickedUser);
+  this.createMessage(user, currentUser);
+  this.messageService.createMessage(this.userService.user.uid + user.uid);
+  this.navigateToChat(this.userService.user.uid + user.uid);
 }
+
+
+privatMessage(pickedUser: any) {
+  this.userService.user.privatChat.push(pickedUser);
+  this.userService.saveUserData();
+}
+
+
+createMessage(user: any, currentUser: any) {
+  user.privatChat.push(currentUser);
+  this.userService.saveOtherUser(user);
+}
+
+
+navigateToChat(messageUID: any) {
+  this.messageService.deleteCurrentChatroom();
+  this.messageService.saveCurrentMessage('chats');
+
+  this.router.navigateByUrl(
+    '/navbar/' + this.userService.user.uid + '/user-chat/' + messageUID
+  );
+}
+
+
+goToChannel(channel: any) {
+  this.messageService.deleteCurrentChatroom();
+  this.messageService.saveCurrentMessage('channels');
+
+  this.router.navigateByUrl(
+    '/navbar/' + this.userService.user.uid + '/channel/' + channel.ID
+  );
+}
+}
+

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'app/shared/auth.service';
 import { User } from 'models/users.class';
 
@@ -12,59 +12,34 @@ import { User } from 'models/users.class';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  displayName : string = '';
-  email : string = '';
-  password : string = '';
-  user = new User();
-  allUsers : any = [];
-  uid: string;
+  //displayName: string = '';
+  //email: string = '';
+  //password: string = '';
+  //user = new User();
+  //allUsers: any = [];
+  //uid: string;
 
-  constructor(private auth : AuthService, private firestore: AngularFirestore, private database: AngularFireDatabase) { }
+  constructor(
+    public authService: AuthService,
+    public fireauth: AngularFireAuth,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
-  register() {
+  //register() {
 
-    if(this.email == '') {
-      alert('Please enter your Email');
-      return;
-    }
+    //if (this.email == '') {
+    //  alert('Please enter your Email');
+    //  return;
+   // }
 
-    if(this.password == '') {
-      alert('Please enter a Password');
-      return;
-    }
+    //if (this.password == '') {
+    //  alert('Please enter a Password');
+    //  return;
+    //}
 
-    if(this.displayName == '') {
-      alert('Please enter a Password');
-      return;
-    }
-
-    
-    this.auth.register(this.email,this.password, this.displayName )
-
-    this.email = '';
-    this.password = '';
-    this.displayName = '';
-    //this.create();
-    console.log('Name is',this.displayName);
-  }
-
-  //create() {
-    //this.firestore
-    //.collection('users')
-    //  .add(this.user.toJSON())
-    //  .then((results) => {
-    //  console.log(results);
-      
-  //})
- //}
-
-
- 
+    //if (this.displayName == '') {
+    //  alert('Please enter a Password');
+    //  return;
 }
-
-
-
-
