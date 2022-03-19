@@ -34,7 +34,9 @@ const routes: Routes = [
     {
       path: 'bookmark',
       component: BookmarkComponent
-    }
+    },
+
+    { path: 'channel/:id', component: UserChatComponent,}
     ]},
   { path: 'user/:id', component: NavbarComponent },
   { path: 'channel/:id', component: UserChatComponent,
