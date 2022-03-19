@@ -288,5 +288,10 @@ goToChannel(channel: any) {
     '/navbar/' + this.userService.user.uid + '/channel/' + channel.ID
   );
 }
+
+changePicture(){
+
+}
+
 }
 

@@ -1,215 +1,225 @@
-.example-container{
+.example-container {
     height: 100vh;
 }
 
-
-
-.toolbar{
+.toolbar {
     background-color: #fa9e12;
-    
 
-    .menu-btn{
+    .menu-btn {
         background: none;
         border: none;
         cursor: pointer;
     }
 
-    .container2{
+    .container2 {
         justify-content: space-between;
     }
 }
 
-.user-img{
-    width: 100%;
-    height: 20%;
-    margin-top: 0;
+.user-img {
+    height: 32px;
+    width: 32px;
+    object-fit: cover;
+    border-radius: 4px;
+
+   
 }
 
-.log-out-btn{
+.log-out-btn {
     display: flex;
     justify-content: center;
     color: rgb(255, 34, 34);
     width: 40vw;
 }
 
-.sidenav{
+.sidenav {
     width: 300px !important;
 }
 
-.channels-btn{
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.threads-btn{
+.status {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    border: none;
-    width: 100%;
-    background: none;
-    cursor: pointer;
     color: white;
-    padding: 20px 10px;
-
-    mat-icon{
-        margin-right: 10px;
-    }
-
-    &:hover{
-        background-color: rgb(78, 78, 78);
-    }
-}
-
-.channel-tree{
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    height: 30vh;
-    overflow-y: scroll;
-    &:hover{
-        background-color: rgb(78, 78, 78);
-    }
-}
-
-.tree{
-    cursor: pointer;
-
-    &:hover{
-        background-color: rgb(78, 78, 78);
-    }
-}
-
-.add-channel-btn{
-    margin-left: 9em;
-}
-
-.channel-div{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding-block: 10px;
-
-    &:hover{
-        background-color: grey !important;
-    }
-
-    &:hover .more-btn{
-        visibility: visible !important; 
-    }
-
-    .more-btn{
-        margin-right: 20px;
-        visibility: hidden;
-        line-height: 0;
-    }
-
-    .channel-name{
-        margin-left: 20px;
+    padding-left: 120px;
+    p {
+        margin: 0;
     }
 }
 
-.user-cards {
-    width: 90%;
-    position: absolute;
-    bottom: 30px;
+.onoff {
     padding-left: 5px;
 }
 
-.account-circle{
-    position: inherit;
-    top: 6px;
-    padding-right: 4px;
+.name{
+    padding-left: 10px;
 }
 
-.mat-card{
-    height: 18px;
-    margin-top: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-
-    &:hover{
-        background-color: rgb(78, 78, 78);
-    }
-}
-
-.user-cards-2{
+.info {
     display: flex;
     flex-direction: row;
-    align-items: baseline;
+    margin-left: 7px;
+    margin-top: 7px;
+    padding: 5px;
 
+    h4 {
+        margin: 0;
+        color: white;
+    }
+
+    :hover{
+        cursor: pointer;
+    }
 }
 
-.user-status {
-    display: flex;
-    position: relative;
-  
-    div {
-      position: absolute;
-      right: 4px;
-      bottom: 0;
+    .channels-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
     }
-  }
 
-  .ai-center {
-    display: flex;
-    align-items: center;
-}
+    .threads-btn {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        border: none;
+        width: 100%;
+        background: none;
+        cursor: pointer;
+        color: white;
+        padding: 20px 10px;
 
-//.status {
-//    position: absolute;
-//    //margin: 20px auto;
-//    width: 8px;
-//    height: 8px;
-//    background-color: rgb(85, 255, 6);
-//    border-radius: 50%;
-//    box-shadow: #000 0 -1px 7px 1px, inset rgb(18, 175, 4) 0 -1px 9px, #7D0 0 2px 12px;
-//}
+        mat-icon {
+            margin-right: 10px;
+        }
 
-//.offline {
-//    background-color: grey;
-//}
-//.status {
- //   height: 48px;
- //   background-color: #00c000;
- //   text-align: center;
- //   color: #fff;
- //   line-height: 48px;
- //   transition: background-color 1s ease;
-//}
-
-
-
-.user-list {
-    display: flex;
-    justify-content: start;
-    align-items: start;
-    margin-top: 150px;
-    padding-left: 10px;
-  
-    img {
-      margin-right: 8px;
-      height: 28px;
-      width: 28px;
-      border-radius: 4px;
-      object-fit: cover;
+        &:hover {
+            background-color: rgb(78, 78, 78);
+        }
     }
-  
-    mat-list-item {
-      margin-top: 16px;
+
+    .channel-tree {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        height: 30vh;
+        overflow-y: scroll;
+        &:hover {
+            background-color: rgb(78, 78, 78);
+        }
     }
-  }
 
-  .user-item {
-    margin-right: 20px;
-    color: lightgrey;
-    cursor: pointer;
-  }
+    .tree {
+        cursor: pointer;
 
-  .user-item:hover {
-    color: white;
-  }
-  
+        &:hover {
+            background-color: rgb(78, 78, 78);
+        }
+    }
+
+    .add-channel-btn {
+        margin-left: 9em;
+    }
+
+    .channel-div {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-block: 10px;
+
+        &:hover {
+            background-color: grey !important;
+        }
+
+        &:hover .more-btn {
+            visibility: visible !important;
+        }
+
+        .more-btn {
+            margin-right: 20px;
+            visibility: hidden;
+            line-height: 0;
+        }
+
+        .channel-name {
+            margin-left: 20px;
+        }
+    }
+
+    .user-cards {
+        width: 90%;
+        position: absolute;
+        bottom: 30px;
+        padding-left: 5px;
+    }
+
+    .account-circle {
+        position: inherit;
+        top: 6px;
+        padding-right: 4px;
+    }
+
+    .mat-card {
+        height: 18px;
+        margin-top: 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+
+        &:hover {
+            background-color: rgb(78, 78, 78);
+        }
+    }
+
+    .user-cards-2 {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+    }
+
+    .user-status {
+        display: flex;
+        position: relative;
+
+        div {
+            position: absolute;
+            right: 4px;
+            bottom: 0;
+        }
+    }
+
+    .ai-center {
+        display: flex;
+        align-items: center;
+    }
+
+    .user-list {
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        margin-top: 150px;
+        padding-left: 10px;
+
+        img {
+            margin-right: 8px;
+            height: 28px;
+            width: 28px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
+        mat-list-item {
+            margin-top: 16px;
+        }
+    }
+
+    .user-item {
+        margin-right: 20px;
+        color: lightgrey;
+        cursor: pointer;
+    }
+
+    .user-item:hover {
+        color: white;
+    }
+

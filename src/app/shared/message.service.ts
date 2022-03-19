@@ -24,7 +24,7 @@ export class MessageService {
   createMessage(messageUID: string) {
     const messageRef: AngularFirestoreDocument<any> =
      this.angularfire.doc(
-      `chats/${messageUID}`
+      `messages/${messageUID}`
     );
     const messageData = {
       name: 'privateChat',

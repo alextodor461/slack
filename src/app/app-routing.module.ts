@@ -28,7 +28,7 @@ const routes: Routes = [
     },
    
     {
-        path: 'threads',
+        path: 'threads/:id',
         component: ThreadsComponent
     },
     {

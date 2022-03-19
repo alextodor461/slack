@@ -48,22 +48,22 @@
 
 
     <!--<div class="user-cards"> -->
-      <div class="user-list">
-        <mat-list >
-          <mat-list-item *ngFor="let user of userService.allUser" (click)="message(user);
+    <div class="user-list">
+      <mat-list>
+        <mat-list-item *ngFor="let user of userService.allUser" (click)="message(user);
           navbarService.close()" class="user-item">
 
-            <div class="user-status">
-              <div class="userOnline" [ngStyle]="{
+          <div class="user-status">
+            <div class="userOnline" [ngStyle]="{
               'background-color': user.online ? 'green' : 'red'
             }"></div>
-              <img src="{{ user.photoURL }}" />
-            </div>
-            {{ user.displayName }}
+            <img src="{{ user.photoURL }}" />
+          </div>
+          {{ user.displayName }}
 
-          </mat-list-item>
-        </mat-list>
-      </div>
+        </mat-list-item>
+      </mat-list>
+    </div>
     <!--</div> -->
   </mat-drawer>
 
@@ -96,7 +96,24 @@
           <mat-icon>account_circle</mat-icon>
         </button>
         <mat-menu class="menu" #menu="matMenu">
-          <img class="user-img" src="assets/icons/user.png" alt="">
+          <div class="info">
+            <img class="user-img" src="{{ userService.user.photoURL }}"
+             (click)="changePicture()">
+            <div class="name">
+              <h4>{{ userService.user.displayName }}</h4>
+            </div>
+            <div class="status">
+              <div class="userOnline" [ngStyle]="{
+                'background-color': userService.user.online ? 'green' : 'red'
+              }">
+              </div>
+              <div class="onoff">
+                <p *ngIf="userService.user.online">Online</p>
+                <p *ngIf="!userService.user.online">Offline</p>
+              </div>
+            </div>
+          </div>
+
           <button class="log-out-btn" (click)="logout()" mat-menu-item>Log Out</button>
         </mat-menu>
       </mat-toolbar-row>
