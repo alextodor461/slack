@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { MatDialog } from '@angular/material/dialog';
+import { ChannelComponent } from 'app/channel/channel.component';
+import { ChatComponent } from 'app/chat/chat.component';
+import { Channel } from 'models/channels.class';
 import { Message } from 'models/message.class';
 import { UserProgressService } from './user-progress.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +16,16 @@ export class MessageService {
   allChannels: any;
   loadMessage : boolean = false;
   currentMessageId: string | undefined;
+  channelId: any = '';
+  channel = new Channel();
   
 
   constructor(
+    public dialog: MatDialog,
     public userService: UserProgressService,
     public angularfire: AngularFirestore,
-    public firestore: AngularFirestore
+    public firestore: AngularFirestore,
+  
   ) { }
 
 
@@ -89,6 +98,18 @@ export class MessageService {
       merge: true,
     });
   } 
+
+  deleteChannel2() {
+    this.firestore
+      .collection('channels')
+      .doc(this.currentMessageId)
+      .delete()
+      .then((results) => {
+        console.log(results);
+      })
+  }
+
+ 
 
   loadAllChannels() {
     this.firestore

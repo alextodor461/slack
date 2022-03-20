@@ -15,6 +15,7 @@ export class ChannelComponent implements OnInit {
   channelId: any = '';
   router: any;
   form: any;
+  currentMessageId: string | undefined;
 
   constructor(private firestore: AngularFirestore, public dialogRef: MatDialogRef<ChannelComponent>, 
     public route: ActivatedRoute) { }
@@ -26,7 +27,7 @@ export class ChannelComponent implements OnInit {
   saveRename() {
     this.firestore
     .collection('channels')
-      .doc(this.channelId)
+      .doc(this.currentMessageId)
       .update(this.channel.toJSON())
       .then((results) => {
         console.log(results);

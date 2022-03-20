@@ -156,11 +156,7 @@ export class NavbarComponent implements OnInit {
     this.dialog.open(AddChannelComponent)
   }
 
-  openChannel(): void {
-    const dialog = this.dialog.open(ChannelComponent);
-    dialog.componentInstance.channel = new Channel(this.channel.toJSON());
-    dialog.componentInstance.channelId = this.channelId;
-  }
+  
 
   openChat(): void {
     this.dialog.open(ChatComponent);
@@ -170,16 +166,6 @@ export class NavbarComponent implements OnInit {
   openDialogEditChannel(): void {
     var dialog = this.dialog.open(EditChannelComponent);
     dialog.componentInstance.channel = this.channel;
-  }
-
-  deleteChannel() {
-    this.firestore
-      .collection('channels')
-      .doc(this.channelId)
-      .delete()
-      .then((results) => {
-        console.log(results);
-      })
   }
 
   // sign out
@@ -269,6 +255,17 @@ createMessage(user: any, currentUser: any) {
   this.userService.saveOtherUser(user);
 }
 
+deleteChannel() {
+  this.messageService.deleteChannel2();
+}
+
+
+
+openChannel(): void {
+  const dialog = this.dialog.open(ChannelComponent);
+  dialog.componentInstance.channel = new Channel(this.channel.toJSON());
+  dialog.componentInstance.channelId = this.channelId;
+}
 
 navigateToChat(messageUID: any) {
   this.messageService.deleteCurrentChatroom();
