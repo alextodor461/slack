@@ -1,5 +1,4 @@
-import { Component, OnInit,   ViewChild,
-  ViewChildren,  QueryList } from '@angular/core';
+import { Component, OnInit,   ViewChild, ViewChildren,  QueryList } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, Router } from '@angular/router';

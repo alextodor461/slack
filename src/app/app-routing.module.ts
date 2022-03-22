@@ -26,9 +26,8 @@ const routes: Routes = [
       path: 'chat/:id',
       component: UserChatComponent
     },
-   
     {
-        path: 'threads/:id',
+        path: 'threads',
         component: ThreadsComponent
     },
     {
@@ -39,26 +38,11 @@ const routes: Routes = [
     { path: 'channel/:id', component: UserChatComponent,}
     ]},
   { path: 'user/:id', component: NavbarComponent },
-  { path: 'channel/:id', component: UserChatComponent,
-   children: [
-    {
-        path: 'threads',
-        component: ThreadsComponent
-    },
-    {
-      path: 'chat/:id',
-      component: ChatComponent
-    },
-    {
-      path: 'user-chat/:id',
-      component: UserChatComponent
-    },
-    ]},
+  
   { path: 'register', component: RegisterComponent },
   { path: 'varify-email', component: VarifyEmailComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'bookmark', component: BookmarkComponent },
-
 ];
 
 @NgModule({
