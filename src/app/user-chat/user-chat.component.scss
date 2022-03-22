@@ -218,11 +218,18 @@
     margin-top: 16px;
   }
 
-  .save-message {
-    position: absolute;
-    right: 48px !important;
-    bottom: 8px;
-    cursor: pointer;
+.save-message {
+  position: absolute;
+  right: 48px !important;
+  bottom: 8px;
+  cursor: pointer;
+}
+
+.delete-message {
+  position: absolute;
+  right: 76px !important;
+  bottom: 8px;
+  cursor: pointer;
 }
   
   
