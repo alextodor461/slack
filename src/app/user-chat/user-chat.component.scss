@@ -213,10 +213,18 @@
   ::ng-deep .mat-menu-content {
     padding: 0px !important;
   }
-  
-  p {
+
+  .word-break {
     margin-top: 16px;
   }
+
+  .save-message {
+    position: absolute;
+    right: 48px !important;
+    bottom: 8px;
+    cursor: pointer;
+}
+  
   
 
 

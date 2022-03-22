@@ -52,6 +52,10 @@
                 <span (click)="navigateToThread(i)" *ngIf="i == hoverIndexThreadIcon" class="material-icons">
                     comment
                 </span>
+                <span (click)="navigateToThread(i)" *ngIf="i == hoverIndexThreadIcon" class="material-icons save-message">
+                    bookmark_border
+                </span>
+                
 
                 <div class="message-userData">
                     <img [matMenuTriggerFor]="showUserData" src="{{ returnUserData(message.userID).photoURL }}" />
