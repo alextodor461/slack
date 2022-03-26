@@ -21,8 +21,6 @@
     width: 32px;
     object-fit: cover;
     border-radius: 4px;
-
-   
 }
 
 .log-out-btn {
@@ -101,8 +99,7 @@
         display: flex;
         flex-direction: column;
         cursor: pointer;
-        height: 30vh;
-        overflow-y: scroll;
+    
         &:hover {
             background-color: rgb(78, 78, 78);
         }
@@ -197,7 +194,7 @@
         display: flex;
         justify-content: start;
         align-items: start;
-        margin-top: 150px;
+        margin-top: 100px;
         padding-left: 10px;
 
         img {

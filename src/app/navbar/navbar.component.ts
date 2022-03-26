@@ -17,7 +17,8 @@ import { DatePipe } from '@angular/common';
 import { UserProgressService } from 'app/shared/user-progress.service';
 import { MessageService } from 'app/shared/message.service';
 import { NavbarService } from 'app/shared/navbar.service';
-import { MatSidenav } from '@angular/material/sidenav';
+import { MatDrawer, MatSidenav } from '@angular/material/sidenav';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 /**
  * Food data with nested structure.
@@ -55,6 +56,7 @@ interface ExampleFlatNode {
 })
 export class NavbarComponent implements OnInit {
   @ViewChild('navbar', { static: false }) public navbar: MatSidenav | any;
+  @ViewChild(MatDrawer) matdrawer: MatDrawer;
   status: OnlineStatusType;
   onlineStatusCheck: any = OnlineStatusType;
   OnlineStatusType = OnlineStatusType;
@@ -77,12 +79,26 @@ export class NavbarComponent implements OnInit {
     public onlineStatusService: OnlineStatusService,
     public navbarService: NavbarService,
     public firestore: AngularFirestore,
-    public route: ActivatedRoute,) {
+    public route: ActivatedRoute,
+    private observer: BreakpointObserver,) {
     this.dataSource.data = TREE_DATA;
     this.readTo = false;
       
     ;
   }
+
+  ngAfterViewInit(){
+    this.observer.observe(['(max-width: 800px)']).subscribe((res) =>{
+      if(res.matches){
+        this.matdrawer.mode = 'over';
+        this.matdrawer.close();
+      } else{
+        this.matdrawer.mode = 'side';
+        this.matdrawer.open();
+      }
+    });
+  }
+
   async ngOnInit(): Promise<any> {
     await this.userService.loadAllUserData();
     await this.messageService.loadAllChannels();
@@ -92,15 +108,12 @@ export class NavbarComponent implements OnInit {
       this.userService.loadUserData(params['id']);
     });
   
-
-  //ngOnInit(): void {
     this.firestore
       .collection('channels')
       .valueChanges({ idField: 'customIdName' })
       .subscribe((changes: any) => {
         this.allChannels = changes;
         console.log(changes);
-        //this.getChannel();
       })
     this.route.paramMap.subscribe(paramMap => {
       this.channelId = paramMap.get('id');
@@ -156,8 +169,6 @@ export class NavbarComponent implements OnInit {
     this.dialog.open(AddChannelComponent)
   }
 
-  
-
   openChat(): void {
     this.dialog.open(ChatComponent);
     this.getChannel2();
@@ -179,7 +190,6 @@ export class NavbarComponent implements OnInit {
     })
   }
 
-
   private _transformer = (node: FoodNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
@@ -187,7 +197,6 @@ export class NavbarComponent implements OnInit {
       level: level,
     };
   };
-
 
   treeControl = new FlatTreeControl<ExampleFlatNode>(
     node => node.level,
@@ -206,7 +215,6 @@ export class NavbarComponent implements OnInit {
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////
-
 
   message(user: any) {
     let curUserId = this.userService.user.uid;
@@ -258,8 +266,6 @@ createMessage(user: any, currentUser: any) {
 deleteChannel() {
   this.messageService.deleteChannel2();
 }
-
-
 
 openChannel(): void {
   const dialog = this.dialog.open(ChannelComponent);
