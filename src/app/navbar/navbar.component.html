@@ -7,9 +7,6 @@
       <mat-icon>bookmark_border</mat-icon>Bookmark
     </button>
 
-    <!--  [routerLink]="['chat/' + channel.customIdName]" -->
-
-
     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="tree">
       <mat-tree-node class="channel-tree" *matTreeNodeDef="let node" matTreeNodeToggle>
         <div (click)="goToChannel(channel)" class="channel-div"

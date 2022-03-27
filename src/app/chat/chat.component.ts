@@ -12,7 +12,7 @@ export class ChatComponent implements OnInit {
   channelId: any = '';
   channel: Channel = new Channel();
   constructor(public firestore: AngularFirestore, public route: ActivatedRoute) { }
-  
+ 
   ngOnInit(): void {
     this.route.paramMap.subscribe( paramMap => {
       this.channelId = paramMap.get('id');

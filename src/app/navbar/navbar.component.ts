@@ -279,8 +279,10 @@ navigateToChat(messageUID: any) {
   this.router.navigateByUrl(
     '/navbar/' + this.userService.user.uid + '/user-chat/' + messageUID
   );
-}
 
+  this.matdrawer.mode = 'over';
+  this.matdrawer.close();
+}
 
 goToChannel(channel: any) {
   this.messageService.deleteCurrentChatroom();
@@ -289,6 +291,8 @@ goToChannel(channel: any) {
   this.router.navigateByUrl(
     '/navbar/' + this.userService.user.uid + '/channel/' + channel.ID
   );
+  this.matdrawer.mode = 'over';
+  this.matdrawer.close();
 }
 
 changePicture(){

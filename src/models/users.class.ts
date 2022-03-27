@@ -7,7 +7,6 @@ export class User {
   public online: boolean | undefined;
   public status: string | undefined;
   public privatChat: any = [];
-  
   constructor(){}
 
   //constructor(obj?: any) {
