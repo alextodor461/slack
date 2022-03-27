@@ -280,8 +280,15 @@ navigateToChat(messageUID: any) {
     '/navbar/' + this.userService.user.uid + '/user-chat/' + messageUID
   );
 
-  this.matdrawer.mode = 'over';
-  this.matdrawer.close();
+  this.observer.observe(['(max-width: 900px)']).subscribe((res) =>{
+    if(res.matches){
+      this.matdrawer.mode = 'over';
+      this.matdrawer.close();
+    } else{
+      this.matdrawer.mode = 'side';
+      this.matdrawer.open();
+    }
+  });
 }
 
 goToChannel(channel: any) {
@@ -291,8 +298,16 @@ goToChannel(channel: any) {
   this.router.navigateByUrl(
     '/navbar/' + this.userService.user.uid + '/channel/' + channel.ID
   );
-  this.matdrawer.mode = 'over';
-  this.matdrawer.close();
+
+  this.observer.observe(['(max-width: 900px)']).subscribe((res) =>{
+    if(res.matches){
+      this.matdrawer.mode = 'over';
+      this.matdrawer.close();
+    } else{
+      this.matdrawer.mode = 'side';
+      this.matdrawer.open();
+    }
+  });
 }
 
 changePicture(){
