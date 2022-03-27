@@ -2,7 +2,7 @@ import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
-import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
+import { MatTree, MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { ActivatedRoute } from '@angular/router';
 import { AddChannelComponent } from 'app/add-channel/add-channel.component';
 import { ChannelComponent } from 'app/channel/channel.component';
@@ -82,13 +82,12 @@ export class NavbarComponent implements OnInit {
     public route: ActivatedRoute,
     private observer: BreakpointObserver,) {
     this.dataSource.data = TREE_DATA;
-    this.readTo = false;
-      
+    this.readTo = false; 
     ;
   }
 
   ngAfterViewInit(){
-    this.observer.observe(['(max-width: 800px)']).subscribe((res) =>{
+    this.observer.observe(['(max-width: 900px)']).subscribe((res) =>{
       if(res.matches){
         this.matdrawer.mode = 'over';
         this.matdrawer.close();
