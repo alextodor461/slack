@@ -53,10 +53,11 @@ export class MessageService {
       .valueChanges()
       .subscribe((message: any) => {
         console.log(message);
-        this.loadMessage = true;
+        
         this.message.name = message.name;
         this.message.text = message.text;
-       
+
+        this.loadMessage = true;
       });
   }
 

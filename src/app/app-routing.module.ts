@@ -15,45 +15,50 @@ const routes: Routes = [
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'navbar/:id', component: NavbarComponent, 
 
-  children: [
-    {
-      path: 'user-chat/:id',
-      component: UserChatComponent
-    },
-    {
-      path: 'chat/:id',
-      component: UserChatComponent
-    },
-   
-    {
+  {
+    path: 'navbar/:id', component: NavbarComponent,
+
+    children: [
+      {
+        path: 'user-chat/:id',
+        component: UserChatComponent
+      },
+      {
+        path: 'chat/:id',
+        component: UserChatComponent
+      },
+
+      {
         path: 'threads/:id',
         component: ThreadsComponent
-    },
-    {
-      path: 'bookmark',
-      component: BookmarkComponent
-    },
+      },
+      {
+        path: 'bookmark',
+        component: BookmarkComponent
+      },
 
-    { path: 'channel/:id', component: UserChatComponent,}
-    ]},
+      { path: 'channel/:id', component: UserChatComponent, }
+    ]
+  },
   { path: 'user/:id', component: NavbarComponent },
-  { path: 'channel/:id', component: UserChatComponent,
-   children: [
-    {
+  {
+    path: 'channel/:id', component: UserChatComponent,
+    children: [
+      {
         path: 'threads',
         component: ThreadsComponent
-    },
-    {
-      path: 'chat/:id',
-      component: ChatComponent
-    },
-    {
-      path: 'user-chat/:id',
-      component: UserChatComponent
-    },
-    ]},
+      },
+      {
+        path: 'chat/:id',
+        component: ChatComponent
+      },
+      {
+        path: 'user-chat/:id',
+        component: UserChatComponent
+      },
+    ]
+  },
   { path: 'register', component: RegisterComponent },
   { path: 'varify-email', component: VarifyEmailComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
@@ -64,6 +69,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
-  
+
 })
 export class AppRoutingModule { }

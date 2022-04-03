@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
+import { MessageService } from 'app/shared/message.service';
+import { UserProgressService } from 'app/shared/user-progress.service';
 import { Channel } from 'models/channels.class';
 
 @Component({
@@ -11,7 +13,12 @@ import { Channel } from 'models/channels.class';
 export class ChatComponent implements OnInit {
   channelId: any = '';
   channel: Channel = new Channel();
-  constructor(public firestore: AngularFirestore, public route: ActivatedRoute) { }
+  constructor(
+    public firestore: AngularFirestore,
+    public route: ActivatedRoute,
+    public userService: UserProgressService,
+    public messageService: MessageService
+    ) { }
   
   ngOnInit(): void {
     this.route.paramMap.subscribe( paramMap => {

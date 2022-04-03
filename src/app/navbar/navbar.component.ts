@@ -18,6 +18,7 @@ import { UserProgressService } from 'app/shared/user-progress.service';
 import { MessageService } from 'app/shared/message.service';
 import { NavbarService } from 'app/shared/navbar.service';
 import { MatSidenav } from '@angular/material/sidenav';
+import { AuthService } from 'app/shared/auth.service';
 
 /**
  * Food data with nested structure.
@@ -72,6 +73,7 @@ export class NavbarComponent implements OnInit {
   constructor(public dialog: MatDialog,
     public userService: UserProgressService,
     public fireauth: AngularFireAuth,
+    public authService: AuthService,
     public router: Router,
     public messageService: MessageService,
     public onlineStatusService: OnlineStatusService,
@@ -80,7 +82,7 @@ export class NavbarComponent implements OnInit {
     public route: ActivatedRoute,) {
     this.dataSource.data = TREE_DATA;
     this.readTo = false;
-      
+
     ;
   }
   async ngOnInit(): Promise<any> {
@@ -91,9 +93,9 @@ export class NavbarComponent implements OnInit {
       console.log(params['id']);
       this.userService.loadUserData(params['id']);
     });
-  
 
-  //ngOnInit(): void {
+
+    //ngOnInit(): void {
     this.firestore
       .collection('channels')
       .valueChanges({ idField: 'customIdName' })
@@ -156,7 +158,7 @@ export class NavbarComponent implements OnInit {
     this.dialog.open(AddChannelComponent)
   }
 
-  
+
 
   openChat(): void {
     this.dialog.open(ChatComponent);
@@ -209,86 +211,89 @@ export class NavbarComponent implements OnInit {
 
 
   message(user: any) {
-    let curUserId = this.userService.user.uid;
-    var indexOfuserUid = user.privatChat.findIndex(function (
-      item: any,
-      i: any
-    ) {
-      return item.userUid === curUserId;
-    });
-
-    if (indexOfuserUid >= 0) {
-      this.navigateToChat(user.privatChat[indexOfuserUid].messageid);
+    if (this.userService.user.uid == 'guest') {
+      console.log('Only Users')
     } else {
-      this.addMessage(user);
+      let curUserId = this.userService.user.uid;
+      var indexOfuserUid = user.privatChat.findIndex(function (
+        item: any,
+        i: any
+      ) {
+        return item.userUid === curUserId;
+      });
+
+      if (indexOfuserUid >= 0) {
+        this.navigateToChat(user.privatChat[indexOfuserUid].messageid);
+      } else {
+        this.addMessage(user);
+      }
     }
   }
 
 
-
-addMessage(user: any) {
-  let pickedUser = {
-    displayName: user.displayName,
-    userUid: user.uid,
-    messageid: this.userService.user.uid + user.uid,
-  };
-  let currentUser = {
-    displayName: this.userService.user.displayName,
-    userUid: this.userService.user.uid,
-    messageid: this.userService.user.uid + user.uid,
-  };
-  this.privatMessage(pickedUser);
-  this.createMessage(user, currentUser);
-  this.messageService.createMessage(this.userService.user.uid + user.uid);
-  this.navigateToChat(this.userService.user.uid + user.uid);
-}
-
-
-privatMessage(pickedUser: any) {
-  this.userService.user.privatChat.push(pickedUser);
-  this.userService.saveUserData();
-}
+    addMessage(user: any) {
+      let pickedUser = {
+        chatName: user.displayName,
+        userUid: user.uid,
+        messageid: this.userService.user.uid + user.uid,
+      };
+      let currentUser = {
+        chatName: this.userService.user.displayName,
+        userUid: this.userService.user.uid,
+        messageid: this.userService.user.uid + user.uid,
+      };
+      this.privatMessage(pickedUser);
+      this.createMessage(user, currentUser);
+      this.messageService.createMessage(this.userService.user.uid + user.uid);
+      this.navigateToChat(this.userService.user.uid + user.uid);
+    }
 
 
-createMessage(user: any, currentUser: any) {
-  user.privatChat.push(currentUser);
-  this.userService.saveOtherUser(user);
-}
-
-deleteChannel() {
-  this.messageService.deleteChannel2();
-}
+    privatMessage(pickedUser: any) {
+      this.userService.user.privateChat.push(pickedUser);
+      this.userService.saveUserData();
+    }
 
 
+    createMessage(user: any, currentUser: any) {
+      this.user.privateChat.push(currentUser);
+      this.userService.saveOtherUser(user);
+    }
 
-openChannel(): void {
-  const dialog = this.dialog.open(ChannelComponent);
-  dialog.componentInstance.channel = new Channel(this.channel.toJSON());
-  dialog.componentInstance.channelId = this.channelId;
-}
-
-navigateToChat(messageUID: any) {
-  this.messageService.deleteCurrentChatroom();
-  this.messageService.saveCurrentMessage('chats');
-
-  this.router.navigateByUrl(
-    '/navbar/' + this.userService.user.uid + '/user-chat/' + messageUID
-  );
-}
+    deleteChannel() {
+      this.messageService.deleteChannel2();
+    }
 
 
-goToChannel(channel: any) {
-  this.messageService.deleteCurrentChatroom();
-  this.messageService.saveCurrentMessage('channels');
 
-  this.router.navigateByUrl(
-    '/navbar/' + this.userService.user.uid + '/channel/' + channel.ID
-  );
-}
+    openChannel(): void {
+      const dialog = this.dialog.open(ChannelComponent);
+      dialog.componentInstance.channel = new Channel(this.channel.toJSON());
+      dialog.componentInstance.channelId = this.channelId;
+    }
 
-changePicture(){
+    navigateToChat(messageUID: any) {
+      this.messageService.deleteCurrentChatroom();
+      this.messageService.saveCurrentMessage('messages');
 
-}
+      this.router.navigateByUrl(
+        '/navbar/' + this.userService.user.uid + '/chat/' + messageUID
+      );
+    }
 
-}
+
+    goToChannel(channel: any) {
+      this.messageService.deleteCurrentChatroom();
+      this.messageService.saveCurrentMessage('channels');
+
+      this.router.navigateByUrl(
+        '/navbar/' + this.userService.user.uid + '/channel/' + channel.ID
+      );
+    }
+
+    changePicture(){
+
+    }
+
+  }
 

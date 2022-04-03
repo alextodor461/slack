@@ -20,9 +20,9 @@ export class NavbarService {
     return this.navbar.open();
   }
 
-  public close() {
-    return this.navbar.close();
-  }
+  //public close() {
+  //  return this.navbar.close();
+  //}
 
   
 }

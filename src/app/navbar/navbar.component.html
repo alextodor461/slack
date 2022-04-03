@@ -14,13 +14,13 @@
       <mat-tree-node class="channel-tree" *matTreeNodeDef="let node" matTreeNodeToggle>
         <div (click)="goToChannel(channel)" class="channel-div"
           *ngFor="let channel of this.messageService.allChannels , let i = index">
-          <div  class="channel-name">
+          <div class="channel-name">
             # {{ channel.name }}
           </div>
 
 
           <div>
-            <button class="more-btn" mat-button [matMenuTriggerFor]="menu" >
+            <button class="more-btn" mat-button [matMenuTriggerFor]="menu">
               <mat-icon>more_horiz</mat-icon>
             </button>
           </div>
@@ -55,8 +55,8 @@
 
     <div class="user-list">
       <mat-list>
-        <mat-list-item *ngFor="let user of userService.allUser" (click)="message(user);
-          navbarService.close()" class="user-item">
+        <mat-list-item *ngFor="let user of userService.allUser" (click)="message(user)"
+           class="user-item">
 
           <div class="user-status">
             <div class="userOnline" [ngStyle]="{
@@ -65,7 +65,7 @@
             <img src="{{ user.photoURL }}" />
           </div>
           {{ user.displayName }}
-
+        
         </mat-list-item>
       </mat-list>
     </div>

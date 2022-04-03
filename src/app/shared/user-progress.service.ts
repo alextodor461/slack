@@ -27,7 +27,7 @@ export class UserProgressService {
         this.user.emailVerified = currentUser.emailVerified;
         this.user.online = true;
         this.user.status = currentUser.status;
-        this.user.privatChat = currentUser.privatChat;
+        this.user.privateChat = currentUser.privateChat;
 
         this.loadUser = true;
       });
@@ -72,7 +72,7 @@ export class UserProgressService {
       online: user.online,
       status: user.status,
       photoURL: user.photoURL,
-      privatChat: user.privatChat,
+      privateChat: user.privateChat,
     };
   }
 }

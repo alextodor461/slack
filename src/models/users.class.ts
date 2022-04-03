@@ -6,7 +6,7 @@ export class User {
   public emailVerified: boolean | undefined;
   public online: boolean | undefined;
   public status: string | undefined;
-  public privatChat: any = [];
+  public privateChat: any = [];
   
   constructor(){}
 
@@ -29,7 +29,7 @@ export class User {
       emailVerified: this.emailVerified,
       online: this.online,
       status: this.status,
-      privatChat: this.privatChat,
+      privateChat: this.privateChat,
     };
   }
 

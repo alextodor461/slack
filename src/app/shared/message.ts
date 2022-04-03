@@ -1,7 +1,14 @@
 export class Message {
     public name: any;
-    public message: any = [];
+    public text: any = [];
   
+
+    constructor(obj?: any) {
+      this.name = obj ? obj.name : ''; 
+      this.text = obj ? obj.text : '';
+    
+
+  }
   
     /**
      * This function return the class to json.
@@ -11,7 +18,7 @@ export class Message {
     public toJson() {
       return {
         name: this.name,
-        text: this.message,
+        text: this.text,
       };
     }
   }

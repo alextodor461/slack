@@ -40,6 +40,7 @@
   
   .message-show-container {
     position: absolute;
+    overflow-y: auto;
     bottom: 200px;
     left: 20;
     left: 20px;
@@ -48,6 +49,7 @@
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
+  
   }
   
   .message-userData {

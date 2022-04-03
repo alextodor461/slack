@@ -3,6 +3,7 @@ import { FirebaseApp } from '@angular/fire/compat';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserProgressService } from './user-progress.service';
 
@@ -24,6 +25,7 @@ export class AuthService {
     public firebase: FirebaseApp,
     public angularfire: AngularFirestore,
     public router: Router,
+    
     public userProgress: UserProgressService,
     public userService: UserProgressService,
     public ngZone: NgZone) {
@@ -136,6 +138,7 @@ export class AuthService {
     })
   }
 
+ 
 
   // email varification
   sendEmailForVarification(user: any) {

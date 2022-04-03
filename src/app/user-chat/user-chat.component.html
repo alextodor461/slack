@@ -1,54 +1,36 @@
 <div *ngIf="messageService.message && this.messageService.loadMessage" class="message-container">
+
     <div *ngIf="this.currentlocation == 'channels'" class="message-title">
-        <!--
-    <span
-      
-    (click)="goBack()"
-      *ngIf="isThreadRoute()"
-      class="material-icons backIcon"
-    >
-      undo
-    </span>
-    -->
+  
         <h3 *ngIf="isThreadRoute()"><b> Thread </b></h3>
         <h3># {{ this.messageService.message.name }}</h3>
-        <!--
-    <span
-      (click)="openDialogChannelSettings()"
-      *ngIf="!isThreadRoute()"
-      class="material-icons backIcon"
-    >
-      keyboard_arrow_down
-    </span>
-    -->
+
     </div>
 
-    <div *ngIf="this.currentlocation == 'chats' && this.privateMessage" class="message-title">
-        <!--
-    <span
-      (click)="goBack()"
-      *ngIf="isThreadRoute()"
-      class="material-icons backIcon"
-    >
-      undo
-    </span>
--->
+    <div *ngIf="this.currentlocation == 'messages' && this.privateChatData" class="message-title">
+
         <div class="privateChatDescription">
-            <img src="{{ this.privateMessage.photoURL }}" />
+            <img src="{{ this.privateChatData.photoURL }}" />
             <h3 *ngIf="isThreadRoute()"><b> Thread </b></h3>
             <h3>
-                {{ this.privateMessage.displayName }}
+               #
+             
+               {{ this.privateChatData.displayName }}
             </h3>
         </div>
     </div>
+
+    
 
     <div *ngIf="!isThreadRoute()" class="message-show-container">
         <div [ngStyle]="{
         'margin-bottom':
           cloudstorageService.imageURL.length > 0 ? '64px' : '24px'
       }" #scrollEnd class="scroll-container">
+
             <div #messages *ngFor="let message of this.messageService.message.text; let i = index"
                 class="message-user-container" (mouseenter)="onHoverThread(i)" (mouseleave)="onHoverThread(-1)">
+
                 <span (click)="navigateToThread(i)" *ngIf="i == hoverIndexThreadIcon" class="material-icons">
                     comment
                 </span>
@@ -106,6 +88,11 @@
     </div>
 
     <p>
+
+
+
+
+
         <mat-form-field class="message-field" appearance="outline">
             <mat-label>Nachricht senden</mat-label>
 
@@ -138,7 +125,7 @@
                 </label>
 
                 <mat-icon matSuffix><span [ngClass]="
-              (this.text && this.cloudstorageService.imageURL.length <= 0) ||
+              (this.message && this.cloudstorageService.imageURL.length <= 0) ||
               checkUploadAllImages()
                 ? ''
                 : 'disabledIcon'
@@ -150,7 +137,36 @@
     </p>
 </div>
 
+      <!--
+    <span
+      
+    (click)="goBack()"
+      *ngIf="isThreadRoute()"
+      class="material-icons backIcon"
+    >
+      undo
+    </span>
+    -->
 
+        <!--
+    <span
+      (click)="goBack()"
+      *ngIf="isThreadRoute()"
+      class="material-icons backIcon"
+    >
+      undo
+    </span>
+-->
+
+        <!--
+    <span
+      (click)="openDialogChannelSettings()"
+      *ngIf="!isThreadRoute()"
+      class="material-icons backIcon"
+    >
+      keyboard_arrow_down
+    </span>
+    -->
 
 <!--
 <div class="chat-container">
