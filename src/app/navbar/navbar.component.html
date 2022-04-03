@@ -1,14 +1,11 @@
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="sidenav" [opened]="true" mode="side">
+  <mat-drawer #drawer class="sidenav" mode="side" opened>
     <button routerLink="threads" class="threads-btn">
       <mat-icon>chat</mat-icon>Threads
     </button>
     <button routerLink="bookmark" class="threads-btn">
       <mat-icon>bookmark_border</mat-icon>Bookmark
     </button>
-
-    <!--  [routerLink]="['chat/' + channel.customIdName]" -->
-
 
     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="tree">
       <mat-tree-node class="channel-tree" *matTreeNodeDef="let node" matTreeNodeToggle>
@@ -86,8 +83,8 @@
         </button>
         <mat-menu class="menu" #menu="matMenu">
           <div class="info">
-            <img class="user-img" src="{{ userService.user.photoURL }}" (click)="changePicture()">
-            <div class="name">
+            <div class="align-items-center">
+              <img class="user-img" src="{{ userService.user.photoURL }}" (click)="changePicture()">
               <h4>{{ userService.user.displayName }}</h4>
             </div>
             <div class="status">

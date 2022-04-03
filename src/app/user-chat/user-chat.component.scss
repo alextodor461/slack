@@ -4,10 +4,10 @@
   
   .message-field {
     position: absolute;
-    bottom: 70px;
+    bottom: 30px;
     left: 20px;
     right: 20px;
-  
+ 
     span {
       cursor: pointer;
       margin-bottom: 8px;
@@ -215,10 +215,25 @@
   ::ng-deep .mat-menu-content {
     padding: 0px !important;
   }
-  
-  p {
+
+  .word-break {
     margin-top: 16px;
   }
+
+.save-message {
+  position: absolute;
+  right: 48px !important;
+  bottom: 8px;
+  cursor: pointer;
+}
+
+.delete-message {
+  position: absolute;
+  right: 76px !important;
+  bottom: 8px;
+  cursor: pointer;
+}
+  
   
 
 

@@ -55,7 +55,7 @@ export class UserChatComponent implements OnInit {
   @ViewChild('inputText') inputText: any;
   
   //@ViewChild('scrollEnd');
-  
+ 
 
   url: string = '';
   constructor(public firestore: AngularFirestore,

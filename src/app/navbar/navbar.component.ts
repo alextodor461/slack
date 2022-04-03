@@ -2,7 +2,7 @@ import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
-import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
+import { MatTree, MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { ActivatedRoute } from '@angular/router';
 import { AddChannelComponent } from 'app/add-channel/add-channel.component';
 import { ChannelComponent } from 'app/channel/channel.component';
@@ -19,6 +19,8 @@ import { MessageService } from 'app/shared/message.service';
 import { NavbarService } from 'app/shared/navbar.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { AuthService } from 'app/shared/auth.service';
+import { MatDrawer} from '@angular/material/sidenav';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 /**
  * Food data with nested structure.
@@ -56,6 +58,7 @@ interface ExampleFlatNode {
 })
 export class NavbarComponent implements OnInit {
   @ViewChild('navbar', { static: false }) public navbar: MatSidenav | any;
+  @ViewChild(MatDrawer) matdrawer: MatDrawer;
   status: OnlineStatusType;
   onlineStatusCheck: any = OnlineStatusType;
   OnlineStatusType = OnlineStatusType;
@@ -79,12 +82,27 @@ export class NavbarComponent implements OnInit {
     public onlineStatusService: OnlineStatusService,
     public navbarService: NavbarService,
     public firestore: AngularFirestore,
-    public route: ActivatedRoute,) {
+    public route: ActivatedRoute,
+    private observer: BreakpointObserver,) {
     this.dataSource.data = TREE_DATA;
     this.readTo = false;
 
-    ;
+
+
   }
+
+  ngAfterViewInit() {
+    this.observer.observe(['(max-width: 900px)']).subscribe((res) => {
+      if (res.matches) {
+        this.matdrawer.mode = 'over';
+        this.matdrawer.close();
+      } else {
+        this.matdrawer.mode = 'side';
+        this.matdrawer.open();
+      }
+    });
+  }
+
   async ngOnInit(): Promise<any> {
     await this.userService.loadAllUserData();
     await this.messageService.loadAllChannels();
@@ -102,7 +120,6 @@ export class NavbarComponent implements OnInit {
       .subscribe((changes: any) => {
         this.allChannels = changes;
         console.log(changes);
-        //this.getChannel();
       })
     this.route.paramMap.subscribe(paramMap => {
       this.channelId = paramMap.get('id');
@@ -181,7 +198,6 @@ export class NavbarComponent implements OnInit {
     })
   }
 
-
   private _transformer = (node: FoodNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
@@ -189,7 +205,6 @@ export class NavbarComponent implements OnInit {
       level: level,
     };
   };
-
 
   treeControl = new FlatTreeControl<ExampleFlatNode>(
     node => node.level,
@@ -208,7 +223,6 @@ export class NavbarComponent implements OnInit {
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////
-
 
   message(user: any) {
     if (this.userService.user.uid == 'guest') {
@@ -231,69 +245,91 @@ export class NavbarComponent implements OnInit {
   }
 
 
-    addMessage(user: any) {
-      let pickedUser = {
-        chatName: user.displayName,
-        userUid: user.uid,
-        messageid: this.userService.user.uid + user.uid,
-      };
-      let currentUser = {
-        chatName: this.userService.user.displayName,
-        userUid: this.userService.user.uid,
-        messageid: this.userService.user.uid + user.uid,
-      };
-      this.privatMessage(pickedUser);
-      this.createMessage(user, currentUser);
-      this.messageService.createMessage(this.userService.user.uid + user.uid);
-      this.navigateToChat(this.userService.user.uid + user.uid);
-    }
-
-
-    privatMessage(pickedUser: any) {
-      this.userService.user.privateChat.push(pickedUser);
-      this.userService.saveUserData();
-    }
-
-
-    createMessage(user: any, currentUser: any) {
-      this.user.privateChat.push(currentUser);
-      this.userService.saveOtherUser(user);
-    }
-
-    deleteChannel() {
-      this.messageService.deleteChannel2();
-    }
-
-
-
-    openChannel(): void {
-      const dialog = this.dialog.open(ChannelComponent);
-      dialog.componentInstance.channel = new Channel(this.channel.toJSON());
-      dialog.componentInstance.channelId = this.channelId;
-    }
-
-    navigateToChat(messageUID: any) {
-      this.messageService.deleteCurrentChatroom();
-      this.messageService.saveCurrentMessage('messages');
-
-      this.router.navigateByUrl(
-        '/navbar/' + this.userService.user.uid + '/chat/' + messageUID
-      );
-    }
-
-
-    goToChannel(channel: any) {
-      this.messageService.deleteCurrentChatroom();
-      this.messageService.saveCurrentMessage('channels');
-
-      this.router.navigateByUrl(
-        '/navbar/' + this.userService.user.uid + '/channel/' + channel.ID
-      );
-    }
-
-    changePicture(){
-
-    }
-
+  addMessage(user: any) {
+    let pickedUser = {
+      chatName: user.displayName,
+      userUid: user.uid,
+      messageid: this.userService.user.uid + user.uid,
+    };
+    let currentUser = {
+      chatName: this.userService.user.displayName,
+      userUid: this.userService.user.uid,
+      messageid: this.userService.user.uid + user.uid,
+    };
+    this.privatMessage(pickedUser);
+    this.createMessage(user, currentUser);
+    this.messageService.createMessage(this.userService.user.uid + user.uid);
+    this.navigateToChat(this.userService.user.uid + user.uid);
   }
+
+
+  privatMessage(pickedUser: any) {
+    this.userService.user.privateChat.push(pickedUser);
+    this.userService.saveUserData();
+  }
+
+
+  createMessage(user: any, currentUser: any) {
+    this.user.privateChat.push(currentUser);
+    this.userService.saveOtherUser(user);
+  }
+
+  deleteChannel() {
+    this.messageService.deleteChannel2();
+  }
+
+
+
+  openChannel(): void {
+    const dialog = this.dialog.open(ChannelComponent);
+    dialog.componentInstance.channel = new Channel(this.channel.toJSON());
+    dialog.componentInstance.channelId = this.channelId;
+  }
+
+  navigateToChat(messageUID: any) {
+    this.messageService.deleteCurrentChatroom();
+    this.messageService.saveCurrentMessage('messages');
+
+    this.router.navigateByUrl(
+      '/navbar/' + this.userService.user.uid + '/chat/' + messageUID
+    );
+  }
+
+
+ // this.observer.observe(['(max-width: 900px)']).subscribe((res) => {
+ //   if (res.matches) {
+ //     this.matdrawer.mode = 'over';
+ //     this.matdrawer.close();
+ //   } else {
+ //     this.matdrawer.mode = 'side';
+ //     this.matdrawer.open();
+ //   }
+ // });
+
+
+goToChannel(channel: any) {
+  this.messageService.deleteCurrentChatroom();
+  this.messageService.saveCurrentMessage('channels');
+
+  this.router.navigateByUrl(
+    '/navbar/' + this.userService.user.uid + '/channel/' + channel.ID
+  );
+  
+
+  this.observer.observe(['(max-width: 900px)']).subscribe((res) => {
+    if (res.matches) {
+      this.matdrawer.mode = 'over';
+      this.matdrawer.close();
+    } else {
+      this.matdrawer.mode = 'side';
+      this.matdrawer.open();
+    }
+  });
+}
+
+changePicture(){
+
+}
+
+}
 

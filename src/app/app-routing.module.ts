@@ -30,7 +30,7 @@ const routes: Routes = [
       },
 
       {
-        path: 'threads/:id',
+        path: 'threads',
         component: ThreadsComponent
       },
       {
@@ -63,7 +63,6 @@ const routes: Routes = [
   { path: 'varify-email', component: VarifyEmailComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'bookmark', component: BookmarkComponent },
-
 ];
 
 @NgModule({
