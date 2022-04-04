@@ -103,7 +103,7 @@ export class AuthService {
       photoURL: 'assets/icons/user.png',
       online: false,
       status: '',
-      privatChat: [],
+      privateChat: [],
 
     };
     return userRef.set(userData, {

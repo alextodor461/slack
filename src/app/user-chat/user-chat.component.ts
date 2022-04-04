@@ -41,7 +41,7 @@ export class UserChatComponent implements OnInit {
   user: User = new User();
   allChannels: any = [];
   allMessages: any = [];
-  allUsers: any = [];
+  allUser: any = [];
   messageId: any;
   hoverIndexThreadIcon: number = -1;
   hoverIndexChatImageIcon: number = -1;
@@ -80,7 +80,7 @@ export class UserChatComponent implements OnInit {
 
       if (this.currentlocation == 'messages' && this.userService.user) {
         this.privateChatData = this.returnUserData(
-          this.filterPrivateChatUser(params['id'])[0].userUid
+          this.filterPrivateChatUser(params['id'])[0].userUID
         );
       }
       
@@ -161,9 +161,9 @@ export class UserChatComponent implements OnInit {
     }
   }
 
-  returnUserData(userUid: any) {
+  returnUserData(userUID: any) {
     let getUser = this.userService.allUser.filter(
-      (user: { uid: any }) => user.uid == userUid
+      (user: { uid: any }) => user.uid == userUID
     );
 
     return getUser[0];
@@ -171,7 +171,7 @@ export class UserChatComponent implements OnInit {
   }
 
   navigateToThread(index: number) {
-    let location = this.currentlocation == 'channels' ? 'channel' : 'chat';
+    let location = this.currentlocation == 'channels' ? 'channel' : 'messages';
 
     this.router.navigateByUrl(
       '/navbar/' +

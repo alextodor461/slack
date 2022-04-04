@@ -10,15 +10,6 @@ export class User {
   
   constructor(){}
 
-  //constructor(obj?: any) {
-  //  this.uid = obj ? obj.uid : '';
-  //  this.email = obj ? obj.email : '';
-  //  this.displayName = obj ? obj.displayName : '';
-  //  this.photoURL = obj ? obj.photoURL : '';
-  //  this.emailVerified = obj ? obj.emailVerified : '';
-//}
-
-
   //In JSON umwandeln
   public toJson() {
     return {

@@ -66,7 +66,7 @@ export class NavbarComponent implements OnInit {
   channel: Channel = new Channel();
   user: User = new User();
   allChannels: any = [];
-  allUsers: any = [];
+  allUser: any = [];
   channelId: any = '';
   userId: any = '';
   form: any;
@@ -132,7 +132,7 @@ export class NavbarComponent implements OnInit {
       .valueChanges({ idField: 'customIdUser' })
       .subscribe((current: any) => {
         console.log('Current User from DB', current);
-        this.allUsers = current;
+        this.allUser = current;
       });
 
     this.route.paramMap.subscribe(paramMap => {
@@ -161,15 +161,6 @@ export class NavbarComponent implements OnInit {
         this.channel = new Channel(channel);
       })
   }
-
-  //getUser() {
-  //  this.firestore.collection('users')
-  //    .doc(this.user.uid)
-  //    .valueChanges()
-  //    .subscribe((user: any) => {
-  //      this.user = new User(user);
-  //    })
-  // }
 
   openDialog(): void {
     this.dialog.open(AddChannelComponent)
@@ -228,16 +219,16 @@ export class NavbarComponent implements OnInit {
     if (this.userService.user.uid == 'guest') {
       console.log('Only Users')
     } else {
-      let curUserId = this.userService.user.uid;
-      var indexOfuserUid = user.privatChat.findIndex(function (
+      let currentUserUID = this.userService.user.uid;
+      var indexOfUserUID = user.privateChat.findIndex(function (
         item: any,
         i: any
       ) {
-        return item.userUid === curUserId;
+        return item.userUID === currentUserUID;
       });
 
-      if (indexOfuserUid >= 0) {
-        this.navigateToChat(user.privatChat[indexOfuserUid].messageid);
+      if (indexOfUserUID >= 0) {
+        this.navigateToChat(user.privateChat[indexOfUserUID].messageid);
       } else {
         this.addMessage(user);
       }
@@ -248,12 +239,12 @@ export class NavbarComponent implements OnInit {
   addMessage(user: any) {
     let pickedUser = {
       chatName: user.displayName,
-      userUid: user.uid,
+      userUID: user.uid,
       messageid: this.userService.user.uid + user.uid,
     };
     let currentUser = {
       chatName: this.userService.user.displayName,
-      userUid: this.userService.user.uid,
+      userUID: this.userService.user.uid,
       messageid: this.userService.user.uid + user.uid,
     };
     this.privatMessage(pickedUser);
