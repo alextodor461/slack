@@ -1,9 +1,9 @@
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="sidenav" mode="side" opened>
-    <button routerLink="threads" class="threads-btn">
+    <button (click)="closeSidenav()" routerLink="threads" class="threads-btn">
       <mat-icon>chat</mat-icon>Threads
     </button>
-    <button routerLink="bookmark" class="threads-btn">
+    <button (click)="closeSidenav()" routerLink="bookmark" class="threads-btn">
       <mat-icon>bookmark_border</mat-icon>Bookmark
     </button>
 

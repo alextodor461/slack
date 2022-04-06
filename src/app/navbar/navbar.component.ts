@@ -318,6 +318,18 @@ goToChannel(channel: any) {
   });
 }
 
+closeSidenav(){
+  this.observer.observe(['(max-width: 900px)']).subscribe((res) => {
+    if (res.matches) {
+      this.matdrawer.mode = 'over';
+      this.matdrawer.close();
+    } else {
+      this.matdrawer.mode = 'side';
+      this.matdrawer.open();
+    }
+  });
+}
+
 changePicture(){
 
 }
