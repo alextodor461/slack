@@ -233,6 +233,16 @@ export class NavbarComponent implements OnInit {
         this.addMessage(user);
       }
     }
+
+    this.observer.observe(['(max-width: 900px)']).subscribe((res) => {
+      if (res.matches) {
+        this.matdrawer.mode = 'over';
+        this.matdrawer.close();
+      } else {
+        this.matdrawer.mode = 'side';
+        this.matdrawer.open();
+      }
+    });
   }
 
 
@@ -285,18 +295,6 @@ export class NavbarComponent implements OnInit {
       '/navbar/' + this.userService.user.uid + '/chat/' + messageUID
     );
   }
-
-
- // this.observer.observe(['(max-width: 900px)']).subscribe((res) => {
- //   if (res.matches) {
- //     this.matdrawer.mode = 'over';
- //     this.matdrawer.close();
- //   } else {
- //     this.matdrawer.mode = 'side';
- //     this.matdrawer.open();
- //   }
- // });
-
 
 goToChannel(channel: any) {
   this.messageService.deleteCurrentChatroom();

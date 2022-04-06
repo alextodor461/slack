@@ -39,13 +39,6 @@ import { DatePipe } from '@angular/common';
 import { BookmarkComponent } from './bookmark/bookmark.component';
 import { HttpClientModule } from '@angular/common/http';
 
-
-
-
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,

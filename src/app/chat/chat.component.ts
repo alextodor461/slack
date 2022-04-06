@@ -19,7 +19,7 @@ export class ChatComponent implements OnInit {
     public userService: UserProgressService,
     public messageService: MessageService
     ) { }
-  
+ 
   ngOnInit(): void {
     this.route.paramMap.subscribe( paramMap => {
       this.channelId = paramMap.get('id');
