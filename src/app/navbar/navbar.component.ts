@@ -216,7 +216,7 @@ export class NavbarComponent implements OnInit {
   ///////////////////////////////////////////////////////////////////////////////////////////////////
 
   message(user: any) {
-    if (this.userService.user.uid == 'guest') {
+    if (this.userService.user.uid == 0) {
       console.log('Only Users')
     } else {
       let currentUserUID = this.userService.user.uid;

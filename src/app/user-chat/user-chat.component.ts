@@ -2,7 +2,8 @@ import { Component,
          OnInit,
          ViewChild,
          ViewChildren,
-         QueryList } from '@angular/core';
+         QueryList, 
+         ElementRef} from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -53,8 +54,8 @@ export class UserChatComponent implements OnInit {
   @ViewChildren('messages')
   messages!: QueryList<any>;
   @ViewChild('inputText') inputText: any;
-  
-  //@ViewChild('scrollEnd');
+  @ViewChild('scrollEnd')
+  private myScrollContainer!: ElementRef;
  
 
   url: string = '';
@@ -83,17 +84,24 @@ export class UserChatComponent implements OnInit {
           this.filterPrivateChatUser(params['id'])[0].userUID
         );
       }
-      
+      this.scrollToBottom();
     });
   }
 
-  filterPrivateChatUser(params: any) {
+  filterPrivateChatUser(params: number) {
     let chatData = this.userService.user.privateChat.filter(
       (privateChat: any) => privateChat.messageId == params
     );
 
     return chatData;
   }
+
+  scrollToBottom = () => {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop =
+        this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) {}
+  };
 
   send() {
     if (

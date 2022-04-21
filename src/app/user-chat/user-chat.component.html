@@ -12,8 +12,8 @@
         <div class="privateChatDescription">
             <img src="{{ this.privateChatData.photoURL }}" />
             <h3 *ngIf="isThreadRoute()"><b> Thread </b></h3>
-            <h3>
-               #
+            <h3> Test Test
+               
              
                {{ this.privateChatData.displayName }}
             </h3>
@@ -142,88 +142,3 @@
         </mat-form-field>
     </p>
 </div>
-
-      <!--
-    <span
-      
-    (click)="goBack()"
-      *ngIf="isThreadRoute()"
-      class="material-icons backIcon"
-    >
-      undo
-    </span>
-    -->
-
-        <!--
-    <span
-      (click)="goBack()"
-      *ngIf="isThreadRoute()"
-      class="material-icons backIcon"
-    >
-      undo
-    </span>
--->
-
-        <!--
-    <span
-      (click)="openDialogChannelSettings()"
-      *ngIf="!isThreadRoute()"
-      class="material-icons backIcon"
-    >
-      keyboard_arrow_down
-    </span>
-    -->
-
-<!--
-<div class="chat-container">
-    <div class="mat-card-div">
-        <mat-card>Nachricht an {{ user.displayName }}
-            <div class="messages-div">
-                <div class="post" *ngFor="let message of allMessages">
-                    <mat-icon class="mat-icon">bookmark_border</mat-icon>
-                    <div>
-                            <img src="assets/icons/user.png" alt="">
-                        <div class="message-and-name-div">
-                            <div>
-                                <span class="name"><b>{{ user.displayName }}</b></span>
-                                <span class="time">{{ message.sentAt }} Uhr</span>
-                            </div>
-                            
-                           <span>{{ message.post }}</span> 
-                        </div> 
-                    </div>  
-                </div>
-            </div>
-
-            <div class="example-form">
-                <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>Message</mat-label>
-                    <img *ngIf="url" [src]="url" width="100px" height="100px" (change)="selectFile($event)">
-                    <div class="chat-container2">
-                        <div class="upload-files-div">
-                            <button class="more-btn" mat-button [matMenuTriggerFor]="menu">
-                                <mat-icon>more_horiz</mat-icon>
-                            </button>
-       
-                            <mat-menu #menu="matMenu">
-                                <button mat-menu-item cdkFocusInitial>
-                                    <div class="file-upload mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                                        <span>Upload files from your computer</span>
-                                        <input type="file" name="FileAttachment" id="FileAttachment" class="upload" />
-                                    </div>
-                                </button>   
-                            </mat-menu>
-                        </div>
-                        <input matInput [(ngModel)]="message.post">
-                   
-                        <button mat-button (click)="send()" cdkFocusInitial>
-                            <mat-icon class="send">send</mat-icon>
-                        </button>
-                    </div>
-                </mat-form-field>
-            </div>
-        </mat-card>
-    </div>
-</div>
-
--->
